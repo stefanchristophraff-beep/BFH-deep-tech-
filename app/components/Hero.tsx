@@ -150,7 +150,7 @@ export default function Hero() {
         viewBox="0 0 32 32"
         aria-hidden="true"
         className="pointer-events-none select-none absolute w-28 h-28 opacity-20"
-        style={{ top: "30%", right: "22%" }}
+        style={{ top: "42%", right: "36%" }}
       >
         <rect width="32" height="32" fill="white" />
         <rect x="6" y="13" width="20" height="6" fill="var(--bfh-navy)" />
