@@ -176,7 +176,7 @@ export default function Hero() {
             <svg
               viewBox="0 0 32 32"
               aria-label="Schweizer Flagge"
-              className="shrink-0 w-12 h-12 sm:w-16 sm:h-16 lg:w-20 lg:h-20"
+              className="shrink-0 w-24 h-24 sm:w-32 sm:h-32 lg:w-40 lg:h-40"
             >
               <rect width="32" height="32" fill="#FF0000" />
               <rect x="6" y="13" width="20" height="6" fill="#FFFFFF" />
