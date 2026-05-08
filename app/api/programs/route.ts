@@ -34,7 +34,14 @@ export async function GET() {
 
   if (!apiKey || !baseId || !tableName) {
     return NextResponse.json(
-      { error: "Missing Airtable configuration" },
+      {
+        error: "Missing Airtable configuration",
+        missing: {
+          apiKey: !apiKey,
+          baseId: !baseId,
+          tableName: !tableName,
+        },
+      },
       { status: 500 }
     );
   }
@@ -45,21 +52,20 @@ export async function GET() {
     const records: AirtableRecord[] = [];
     let offset: string | undefined;
 
-    // Paginate through all records
     do {
       const params = new URLSearchParams({ pageSize: "100" });
       if (offset) params.set("offset", offset);
 
       const res = await fetch(`${url}?${params}`, {
         headers: { Authorization: `Bearer ${apiKey}` },
-        next: { revalidate: 3600 }, // cache for 1 hour
+        next: { revalidate: 3600 },
       });
 
       if (!res.ok) {
         const err = await res.text();
-        console.error("Airtable error:", err);
+        console.error("Airtable error:", res.status, err);
         return NextResponse.json(
-          { error: "Failed to fetch from Airtable" },
+          { error: "Airtable request failed", status: res.status, detail: err },
           { status: res.status }
         );
       }
@@ -88,6 +94,9 @@ export async function GET() {
     return NextResponse.json(programs);
   } catch (err) {
     console.error("Fetch error:", err);
-    return NextResponse.json({ error: "Internal error" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Internal error", detail: String(err) },
+      { status: 500 }
+    );
   }
 }
