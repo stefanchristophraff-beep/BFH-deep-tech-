@@ -18,6 +18,7 @@ const MEMBERS = [
     org: "Berner Fachhochschule",
     img: "/stefanbild.jpg",
     initials: "SR",
+    email: "stefan.raff@bfh.ch",
   },
 ];
 
@@ -97,6 +98,17 @@ export default function Team() {
                 >
                   @{m.org}
                 </div>
+                {"email" in m && m.email && (
+                  <div className="mt-2">
+                    <a
+                      href={`mailto:${m.email}`}
+                      className="text-xs"
+                      style={{ color: "var(--bfh-blue)" }}
+                    >
+                      {m.email}
+                    </a>
+                  </div>
+                )}
               </div>
             </div>
           ))}
