@@ -78,20 +78,18 @@ export default function Hero() {
           strokeLinejoin="miter"
           strokeLinecap="square"
         />
+        {/* Swiss flag centered inside the outline — official cross proportions (6/32 arm width, 20/32 arm length) */}
+        <g transform="translate(436, 188)" opacity="0.85" filter="url(#flagShadow)">
+          <defs>
+            <filter id="flagShadow" x="-20%" y="-20%" width="140%" height="140%">
+              <feDropShadow dx="0" dy="2" stdDeviation="4" floodColor="#000" floodOpacity="0.45" />
+            </filter>
+          </defs>
+          <rect width="100" height="100" fill="#FF0000" />
+          <rect x="19" y="38" width="62" height="24" fill="#FFFFFF" />
+          <rect x="38" y="19" width="24" height="62" fill="#FFFFFF" />
+        </g>
       </svg>
-
-      {/* Swiss flag — placed on the map area (right side) */}
-      <div
-        className="absolute hidden lg:block"
-        style={{ right: "14%", top: "38%", filter: "drop-shadow(0 2px 8px rgba(0,0,0,0.4))" }}
-        aria-label="Schweizer Flagge"
-      >
-        <svg width="52" height="52" viewBox="0 0 20 20">
-          <rect width="20" height="20" fill="#FF0000" />
-          <rect x="8.5" y="3" width="3" height="14" fill="#FFFFFF" />
-          <rect x="3" y="8.5" width="14" height="3" fill="#FFFFFF" />
-        </svg>
-      </div>
 
       {/* Yellow left accent line */}
       <div
