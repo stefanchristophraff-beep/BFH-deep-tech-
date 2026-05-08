@@ -53,7 +53,7 @@ const translations: Record<Language, Record<string, string>> = {
     "radar.title": "Radar erkunden",
     "radar.subtitle":
       "Durchsuche alle Deep Tech Support Programme für Schweizer Startups",
-    "radar.search.placeholder": "Programme suchen (z.B. KI, Biotech, Fintech…)",
+    "radar.search.placeholder": "Programme oder Schlagworte suchen",
     "radar.filter.all": "Alle Kategorien",
     "radar.filter.funding": "Förderung",
     "radar.filter.accelerator": "Accelerator",
@@ -143,7 +143,7 @@ const translations: Record<Language, Record<string, string>> = {
     "radar.title": "Explore Radar",
     "radar.subtitle":
       "Browse all Deep Tech support programs for Swiss startups",
-    "radar.search.placeholder": "Search programs (e.g. AI, Biotech, Fintech…)",
+    "radar.search.placeholder": "Search programs or keywords",
     "radar.filter.all": "All Categories",
     "radar.filter.funding": "Funding",
     "radar.filter.accelerator": "Accelerator",
