@@ -64,7 +64,7 @@ const translations: Record<Language, Record<string, string>> = {
     "radar.tag.open": "Offen",
     "radar.tag.ongoing": "Laufend",
     "radar.tag.closed": "Geschlossen",
-    "radar.cta": "Details ansehen",
+    "radar.cta": "Direktlink zum Programm",
     "radar.airtable.hint":
       "Echtdaten werden nach Airtable-Integration geladen.",
 
@@ -154,7 +154,7 @@ const translations: Record<Language, Record<string, string>> = {
     "radar.tag.open": "Open",
     "radar.tag.ongoing": "Ongoing",
     "radar.tag.closed": "Closed",
-    "radar.cta": "View details",
+    "radar.cta": "Direct link to program",
     "radar.airtable.hint": "Live data will load after Airtable integration.",
 
     // Feedback
