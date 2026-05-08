@@ -290,7 +290,7 @@ export default function RadarSection() {
 
               {/* Cluster */}
               <div>
-                <p className="text-xs font-700 mb-2 uppercase tracking-wide" style={{ color: "var(--bfh-muted)" }}>Cluster</p>
+                <p className="text-xs font-700 mb-2 uppercase tracking-wide" style={{ color: "var(--bfh-muted)" }}>Technology Cluster</p>
                 <MultiSelectDropdown options={clusterOptions} selected={selectedClusters} onChange={(v) => { setSelectedClusters(v); resetScroll(); }} placeholder={lang === "de" ? "Cluster auswählen..." : "Select clusters..."} />
               </div>
 
@@ -324,6 +324,9 @@ export default function RadarSection() {
             )}
           </div>
         )}
+
+        {/* Offerings legend */}
+        {!loading && !error && <OfferingsLegend lang={lang} />}
 
         {/* Loading */}
         {loading && (
@@ -371,6 +374,84 @@ export default function RadarSection() {
         )}
       </div>
     </section>
+  );
+}
+
+const OFFERINGS_DE: Record<string, string> = {
+  "Coaching": "Individuelle Begleitung durch erfahrene Expert:innen zu Strategie, Geschäftsmodell und Umsetzung.",
+  "Mentoring": "Langfristige 1:1-Betreuung durch erfahrene Gründer:innen oder Branchenkenner:innen.",
+  "Funding / Grant": "Nicht-rückzahlbare Fördergelder oder Zuschüsse für Forschung, Entwicklung oder Markteintritt.",
+  "Grant": "Nicht-rückzahlbare Fördergelder oder Zuschüsse für Forschung, Entwicklung oder Markteintritt.",
+  "Equity Investment": "Beteiligungskapital: Investor:innen erhalten Anteile am Unternehmen im Gegenzug für Kapital.",
+  "Loan": "Rückzahlbares Darlehen zu günstigen Konditionen für Startups.",
+  "Networking": "Zugang zu Netzwerken aus Investor:innen, Corporates, Alumni und anderen Startups.",
+  "Workspace": "Zugang zu Büroräumen, Labors, Co-Working-Spaces oder technischer Infrastruktur.",
+  "Infrastructure": "Nutzung von Forschungsinfrastruktur, Geräten oder Testumgebungen.",
+  "Training": "Strukturierte Workshops, Kurse und Lernformate zu relevanten Startup-Themen.",
+  "Workshops": "Praxisorientierte Lehrveranstaltungen zu Themen wie Pitching, Finanzen oder Marketing.",
+  "Legal / IP": "Unterstützung bei Patent-, Lizenz- und Rechtsfragen rund um geistiges Eigentum.",
+  "Market Access": "Unterstützung beim Markteintritt, bei der Kundengewinnung oder bei Pilotprojekten.",
+  "Acceleration": "Intensivprogramm zur schnellen Skalierung – mit Mentoring, Events und Demo Day.",
+  "Incubation": "Umfassende Begleitung in der Gründungsphase mit Infrastruktur, Coaching und Community.",
+  "Visibility": "Öffentlichkeitswirksamkeit durch Medienauftritte, Awards oder Ausstellungen.",
+  "Certification": "Zertifizierungen oder Labels, die Startups Glaubwürdigkeit und Marktzugang verschaffen.",
+  "Technology Transfer": "Überführung von Forschungsergebnissen und Hochschulwissen in marktfähige Produkte.",
+};
+
+const OFFERINGS_EN: Record<string, string> = {
+  "Coaching": "Individual guidance by experienced experts on strategy, business model and execution.",
+  "Mentoring": "Long-term 1:1 support from experienced founders or industry specialists.",
+  "Funding / Grant": "Non-repayable grants for R&D, product development or market entry.",
+  "Grant": "Non-repayable grants for R&D, product development or market entry.",
+  "Equity Investment": "Investors receive company shares in exchange for capital.",
+  "Loan": "Repayable loan at favourable conditions for startups.",
+  "Networking": "Access to networks of investors, corporates, alumni and other startups.",
+  "Workspace": "Access to office space, labs, co-working or technical infrastructure.",
+  "Infrastructure": "Use of research infrastructure, equipment or testing environments.",
+  "Training": "Structured workshops, courses and learning formats on key startup topics.",
+  "Workshops": "Hands-on sessions on pitching, finance, marketing and more.",
+  "Legal / IP": "Support with patents, licensing and intellectual property matters.",
+  "Market Access": "Support for market entry, customer acquisition or pilot projects.",
+  "Acceleration": "Intensive program to scale fast – with mentoring, events and demo day.",
+  "Incubation": "Comprehensive support in the founding phase with infrastructure, coaching and community.",
+  "Visibility": "Public exposure through media, awards or exhibitions.",
+  "Certification": "Labels or certifications that give startups credibility and market access.",
+  "Technology Transfer": "Translation of research and university knowledge into market-ready products.",
+};
+
+function OfferingsLegend({ lang }: { lang: string }) {
+  const [open, setOpen] = useState(false);
+  const dict = lang === "de" ? OFFERINGS_DE : OFFERINGS_EN;
+  const entries = Object.entries(dict);
+
+  return (
+    <div className="mb-6">
+      <button
+        type="button"
+        onClick={() => setOpen(!open)}
+        className="flex items-center gap-2 text-xs font-600 transition-colors"
+        style={{ color: "var(--bfh-blue)" }}
+      >
+        <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        {lang === "de" ? "Legende: Was bedeuten die Angebots-Kategorien?" : "Legend: What do the offering categories mean?"}
+        <svg className={`w-3 h-3 transition-transform ${open ? "rotate-180" : ""}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+        </svg>
+      </button>
+
+      {open && (
+        <div className="mt-3 p-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-3" style={{ backgroundColor: "var(--bfh-surface)", border: "1px solid var(--bfh-border)" }}>
+          {entries.map(([term, def]) => (
+            <div key={term}>
+              <span className="text-xs font-700" style={{ color: "var(--bfh-navy)" }}>{term}: </span>
+              <span className="text-xs" style={{ color: "var(--bfh-muted)" }}>{def}</span>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
   );
 }
 
