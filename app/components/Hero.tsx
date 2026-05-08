@@ -154,17 +154,6 @@ export default function Hero() {
           <g key={name}>
             <circle cx={x} cy={y} r="4" fill="white" opacity="0.8" />
             <circle cx={x} cy={y} r="9" fill="none" stroke="white" strokeWidth="1" opacity="0.25" />
-            <text
-              x={x + 11}
-              y={y + 4}
-              fill="white"
-              fontSize="14"
-              fontFamily="Arial, sans-serif"
-              fontWeight="400"
-              opacity="0.35"
-            >
-              {name}
-            </text>
           </g>
         ))}
       </svg>
