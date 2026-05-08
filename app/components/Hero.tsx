@@ -127,13 +127,13 @@ export default function Hero() {
       className="relative pt-16 overflow-hidden"
       style={{ backgroundColor: "var(--bfh-navy)" }}
     >
-      {/* Switzerland outline — decorative background */}
+      {/* Switzerland outline + city markers — decorative background */}
       <svg
         viewBox="-10 -20 1030 610"
         preserveAspectRatio="xMidYMid meet"
         aria-hidden="true"
         className="pointer-events-none select-none absolute inset-0 w-full h-full"
-        style={{ opacity: 0.1 }}
+        style={{ opacity: 0.18 }}
       >
         <path
           d={CH_PATH}
@@ -143,6 +143,30 @@ export default function Hero() {
           strokeLinejoin="miter"
           strokeLinecap="square"
         />
+        {/* City markers: x=(lon-5.96)*220, y=(47.85-lat)*280 */}
+        {[
+          { name: "Zürich",   x: 570, y: 134 },
+          { name: "Basel",    x: 359, y:  81 },
+          { name: "Bern",     x: 326, y: 252 },
+          { name: "Lausanne", x: 147, y: 372 },
+          { name: "Genf",     x:  40, y: 462 },
+        ].map(({ name, x, y }) => (
+          <g key={name}>
+            <circle cx={x} cy={y} r="6" fill="white" opacity="0.9" />
+            <circle cx={x} cy={y} r="12" fill="none" stroke="white" strokeWidth="1.5" opacity="0.4" />
+            <text
+              x={x + 16}
+              y={y + 5}
+              fill="white"
+              fontSize="22"
+              fontFamily="Arial, sans-serif"
+              fontWeight="600"
+              opacity="0.7"
+            >
+              {name}
+            </text>
+          </g>
+        ))}
       </svg>
 
       {/* Swiss flag — decorative top right */}
