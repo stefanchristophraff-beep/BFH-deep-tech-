@@ -6,7 +6,7 @@ import { useLanguage } from "@/app/context/LanguageContext";
 const FAQ_DE = [
   {
     q: "Was ist der Startup Support Radar?",
-    a: "Der Startup Support Radar ist ein interaktives Tool, das entwickelt wurde, um die Schweizer Unterstützungslandschaft für Deep-Tech-Startups systematisch zu kartieren und transparent zu machen. Er bietet eine strukturierte Übersicht über Förderangebote und ordnet diese den verschiedenen Phasen der Unternehmensentwicklung zu.",
+    a: "Der Startup Support Radar ist ein interaktives Tool, das entwickelt wurde, um die Schweizer Unterstützungslandschaft für Deep-Tech-Startups systematisch zu kartieren und transparent zu machen. Er bietet eine strukturierte Übersicht über Förderangebote und ordnet diese entlang verschiedener Phasen der Unternehmensentwicklung, Angebotstypen und Technologien.",
   },
   {
     q: "Warum wurde dieses Tool entwickelt?",
