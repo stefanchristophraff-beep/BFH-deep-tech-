@@ -383,10 +383,9 @@ function getLogoDomain(hyperlink: string): string | null {
 }
 
 function OrgLogo({ hyperlink, name }: { hyperlink: string; name: string }) {
-  const [failed, setFailed] = useState(false);
   const domain = getLogoDomain(hyperlink);
 
-  if (!domain || failed) {
+  if (!domain) {
     return (
       <div
         className="w-8 h-8 rounded flex items-center justify-center shrink-0 text-xs font-700"
@@ -399,13 +398,12 @@ function OrgLogo({ hyperlink, name }: { hyperlink: string; name: string }) {
 
   return (
     <img
-      src={`https://logo.clearbit.com/${domain}`}
+      src={`https://www.google.com/s2/favicons?domain=${domain}&sz=64`}
       alt={name}
       width={32}
       height={32}
-      className="w-8 h-8 rounded object-contain shrink-0"
+      className="w-8 h-8 rounded object-contain shrink-0 p-0.5"
       style={{ border: "1px solid var(--bfh-border)", backgroundColor: "#fff" }}
-      onError={() => setFailed(true)}
     />
   );
 }
