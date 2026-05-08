@@ -251,23 +251,22 @@ export default function Hero() {
             className="flex flex-wrap items-center gap-6 mt-10 pt-8"
             style={{ borderTop: "1px solid rgba(255,255,255,0.12)" }}
           >
-            <span className="text-xs font-600 uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.4)" }}>
+            <span className="text-xs font-700 uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.55)" }}>
               {lang === "de" ? "Unterstützt durch" : "Supported by"}
             </span>
             {[
               { name: "Berner Fachhochschule", domain: "bfh.ch" },
               { name: "Innosuisse", domain: "innosuisse.ch" },
             ].map(({ name, domain }) => (
-              <div key={domain} className="flex items-center gap-2">
+              <div key={domain} className="flex items-center gap-2.5 px-4 py-2 rounded" style={{ backgroundColor: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.15)" }}>
                 <img
-                  src={`https://www.google.com/s2/favicons?domain=${domain}&sz=32`}
+                  src={`https://www.google.com/s2/favicons?domain=${domain}&sz=64`}
                   alt={name}
-                  width={20}
-                  height={20}
+                  width={28}
+                  height={28}
                   className="rounded"
-                  style={{ opacity: 0.85 }}
                 />
-                <span className="text-sm font-600" style={{ color: "rgba(255,255,255,0.7)" }}>
+                <span className="text-sm font-700" style={{ color: "rgba(255,255,255,0.9)" }}>
                   {name}
                 </span>
               </div>
