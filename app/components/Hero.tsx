@@ -143,19 +143,6 @@ export default function Hero() {
           strokeLinejoin="miter"
           strokeLinecap="square"
         />
-        {/* City markers: x=(lon-5.96)*220, y=(47.85-lat)*280 */}
-        {[
-          { name: "Zürich",   x: 570, y: 134 },
-          { name: "Basel",    x: 359, y:  81 },
-          { name: "Bern",     x: 326, y: 252 },
-          { name: "Lausanne", x: 147, y: 372 },
-          { name: "Genf",     x:  40, y: 462 },
-        ].map(({ name, x, y }) => (
-          <g key={name}>
-            <circle cx={x} cy={y} r="4" fill="white" opacity="0.8" />
-            <circle cx={x} cy={y} r="9" fill="none" stroke="white" strokeWidth="1" opacity="0.25" />
-          </g>
-        ))}
       </svg>
 
       {/* Swiss flag — decorative top right */}
