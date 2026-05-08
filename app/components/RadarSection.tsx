@@ -102,7 +102,6 @@ export default function RadarSection() {
   const [selectedClusters, setSelectedClusters] = useState<string[]>([]);
   const [selectedSkills, setSelectedSkills] = useState<string[]>([]);
   const [selectedOfferings, setSelectedOfferings] = useState<string[]>([]);
-  const [accessibleToAll, setAccessibleToAll] = useState(false);
   const [deeptechOnly, setDeeptechOnly] = useState(false);
 
   useEffect(() => {
@@ -139,7 +138,6 @@ export default function RadarSection() {
     selectedClusters.length > 0 ||
     selectedSkills.length > 0 ||
     selectedOfferings.length > 0 ||
-    accessibleToAll ||
     deeptechOnly;
 
   const filtered = useMemo(() => {
@@ -175,7 +173,6 @@ export default function RadarSection() {
         selectedOfferings.length === 0 ||
         selectedOfferings.some((o) => programOfferings.includes(o));
 
-      const matchesAccessible = !accessibleToAll || p.accessibleToAllFounders;
       const matchesDeeptech = !deeptechOnly || p.deeptechSpecific;
 
       return (
@@ -184,7 +181,6 @@ export default function RadarSection() {
         matchesCluster &&
         matchesSkills &&
         matchesOfferings &&
-        matchesAccessible &&
         matchesDeeptech
       );
     });
@@ -194,7 +190,6 @@ export default function RadarSection() {
     selectedClusters,
     selectedSkills,
     selectedOfferings,
-    accessibleToAll,
     deeptechOnly,
     programs,
   ]);
@@ -253,7 +248,7 @@ export default function RadarSection() {
             {lang === "de" ? "Filter" : "Filters"}
             {hasActiveFilters && (
               <span className="text-xs rounded-full w-5 h-5 flex items-center justify-center font-700" style={{ backgroundColor: "var(--bfh-yellow)", color: "var(--bfh-dark)" }}>
-                {activePhases.length + selectedClusters.length + selectedSkills.length + selectedOfferings.length + (accessibleToAll ? 1 : 0) + (deeptechOnly ? 1 : 0)}
+                {activePhases.length + selectedClusters.length + selectedSkills.length + selectedOfferings.length + (deeptechOnly ? 1 : 0)}
               </span>
             )}
           </button>
@@ -311,19 +306,15 @@ export default function RadarSection() {
             {/* Checkboxes */}
             <div className="flex flex-wrap gap-6 mt-5 pt-4" style={{ borderTop: "1px solid var(--bfh-border)" }}>
               <label className="flex items-center gap-2 cursor-pointer text-sm font-600" style={{ color: "var(--bfh-body)" }}>
-                <input type="checkbox" checked={accessibleToAll} onChange={(e) => { setAccessibleToAll(e.target.checked); resetScroll(); }} />
-                {lang === "de" ? "Zugänglich für alle Gründer" : "Accessible to all founders"}
-              </label>
-              <label className="flex items-center gap-2 cursor-pointer text-sm font-600" style={{ color: "var(--bfh-body)" }}>
                 <input type="checkbox" checked={deeptechOnly} onChange={(e) => { setDeeptechOnly(e.target.checked); resetScroll(); }} />
-                {lang === "de" ? "Nur Deep-Tech spezifisch" : "Deep-Tech specific only"}
+                {lang === "de" ? "Deep-Tech spezifische Programme" : "Deep-Tech specific programs"}
               </label>
             </div>
 
             {hasActiveFilters && (
               <div className="mt-3 text-right">
                 <button
-                  onClick={() => { setActivePhases([]); setSelectedClusters([]); setSelectedSkills([]); setSelectedOfferings([]); setAccessibleToAll(false); setDeeptechOnly(false); resetScroll(); }}
+                  onClick={() => { setActivePhases([]); setSelectedClusters([]); setSelectedSkills([]); setSelectedOfferings([]); setDeeptechOnly(false); resetScroll(); }}
                   className="text-xs underline transition-colors"
                   style={{ color: "var(--bfh-blue)" }}
                 >
@@ -440,11 +431,6 @@ function ProgramCard({
               {cl.trim()}
             </span>
           ))}
-          {program.accessibleToAllFounders && (
-            <span className="text-xs font-600 px-2 py-0.5" style={{ backgroundColor: "#f0fdf4", color: "#166534", border: "1px solid #bbf7d0" }}>
-              ✓ {lang === "de" ? "Alle Gründer" : "All founders"}
-            </span>
-          )}
           {program.deeptechSpecific && (
             <span className="text-xs font-600 px-2 py-0.5" style={{ backgroundColor: "var(--bfh-blue-light)", color: "var(--bfh-navy)", border: "1px solid rgba(30,61,92,0.15)" }}>
               Deep Tech
