@@ -13,7 +13,7 @@ const inputStyle = {
 };
 
 export default function FeedbackForm() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const [formState, setFormState] = useState<FormState>("idle");
   const [form, setForm] = useState({
     name: "",
@@ -251,6 +251,14 @@ export default function FeedbackForm() {
                   t("feedback.submit")
                 )}
               </button>
+            <p className="text-xs mt-3" style={{ color: "var(--bfh-muted)" }}>
+              {lang === "en"
+                ? "Your data will only be used to process your feedback. "
+                : "Ihre Daten werden ausschliesslich zur Bearbeitung Ihres Feedbacks verwendet. "}
+              <a href="/datenschutz" className="underline hover:opacity-80">
+                {lang === "en" ? "Privacy Policy" : "Datenschutzerklärung"}
+              </a>
+            </p>
             </form>
           </div>
         </div>

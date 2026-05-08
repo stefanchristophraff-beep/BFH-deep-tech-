@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useLanguage } from "@/app/context/LanguageContext";
 
 export default function Footer() {
@@ -36,18 +37,29 @@ export default function Footer() {
           {/* Links */}
           <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm">
             {[
-              { label: t("footer.legal"), href: "#" },
-              { label: t("footer.privacy"), href: "#" },
-              { label: t("footer.contact"), href: "#" },
+              { label: t("footer.legal"), href: "/impressum" },
+              { label: t("footer.privacy"), href: "/datenschutz" },
+              { label: t("footer.contact"), href: "mailto:stefan.raff@bfh.ch" },
             ].map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                className="transition-colors hover:text-white"
-                style={{ color: "rgba(255,255,255,0.5)" }}
-              >
-                {link.label}
-              </a>
+              link.href.startsWith("/") ? (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  className="transition-colors hover:text-white"
+                  style={{ color: "rgba(255,255,255,0.5)" }}
+                >
+                  {link.label}
+                </Link>
+              ) : (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  className="transition-colors hover:text-white"
+                  style={{ color: "rgba(255,255,255,0.5)" }}
+                >
+                  {link.label}
+                </a>
+              )
             ))}
           </div>
         </div>
