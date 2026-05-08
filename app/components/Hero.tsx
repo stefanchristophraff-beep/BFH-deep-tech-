@@ -145,6 +145,17 @@ export default function Hero() {
         />
       </svg>
 
+      {/* Swiss flag — decorative top right */}
+      <svg
+        viewBox="0 0 32 32"
+        aria-hidden="true"
+        className="pointer-events-none select-none absolute top-8 right-8 w-24 h-24 opacity-15"
+      >
+        <rect width="32" height="32" fill="white" />
+        <rect x="6" y="13" width="20" height="6" fill="var(--bfh-navy)" />
+        <rect x="13" y="6" width="6" height="20" fill="var(--bfh-navy)" />
+      </svg>
+
       {/* Yellow left accent line */}
       <div
         className="absolute left-0 top-0 bottom-0 w-1"
