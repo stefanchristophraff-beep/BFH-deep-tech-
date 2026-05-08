@@ -28,7 +28,7 @@ function toString(val: unknown): string {
 }
 
 const BASE_ID = "appJn6vW6UO1JSDvd";
-const TABLE_NAME = "Deep-Tech Kommerzialisierungsradar";
+const TABLE_NAME = "tblyKeuT35fpIhBr0";
 
 export async function GET() {
   const apiKey = process.env.AIRTABLE_API_KEY;
