@@ -31,7 +31,7 @@ export default function Navbar() {
                 Deep-Tech Startup Radar
               </div>
               <div className="text-xs text-[#6b7280] leading-none mt-0.5">
-                Berner Fachhochschule
+                Institute for Digital Technology Management
               </div>
             </div>
           </div>
