@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useEffect, useRef } from "react";
+import { useState, useMemo, useEffect, useRef, useCallback } from "react";
 import { useLanguage } from "@/app/context/LanguageContext";
 import type { AirtableProgram } from "@/app/api/programs/route";
 
@@ -128,6 +128,11 @@ export default function RadarSection() {
       });
   }, []);
 
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const resetScroll = useCallback(() => {
+    scrollRef.current?.scrollTo({ top: 0 });
+  }, []);
+
   const clusterOptions = useMemo(() => extractUniqueValues(programs, "cluster"), [programs]);
   const skillOptions = useMemo(() => extractUniqueValues(programs, "commercialisationSkills"), [programs]);
   const offeringOptions = useMemo(() => extractUniqueValues(programs, "offerings"), [programs]);
@@ -136,6 +141,7 @@ export default function RadarSection() {
     setActivePhases((prev) =>
       prev.includes(phase) ? prev.filter((p) => p !== phase) : [...prev, phase]
     );
+    resetScroll();
   };
 
   const hasActiveFilters =
@@ -235,7 +241,7 @@ export default function RadarSection() {
             <input
               type="text"
               value={search}
-              onChange={(e) => setSearch(e.target.value)}
+              onChange={(e) => { setSearch(e.target.value); resetScroll(); }}
               placeholder={t("radar.search.placeholder")}
               className="w-full pl-12 pr-4 py-3 text-base border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-400 bg-gray-50 placeholder:text-gray-400"
             />
@@ -315,7 +321,7 @@ export default function RadarSection() {
                 <MultiSelectDropdown
                   options={skillOptions}
                   selected={selectedSkills}
-                  onChange={setSelectedSkills}
+                  onChange={(v) => { setSelectedSkills(v); resetScroll(); }}
                   placeholder={lang === "de" ? "Kompetenzen auswählen..." : "Select skills..."}
                 />
               </div>
@@ -328,7 +334,7 @@ export default function RadarSection() {
                 <MultiSelectDropdown
                   options={clusterOptions}
                   selected={selectedClusters}
-                  onChange={setSelectedClusters}
+                  onChange={(v) => { setSelectedClusters(v); resetScroll(); }}
                   placeholder={lang === "de" ? "Cluster auswählen..." : "Select clusters..."}
                 />
               </div>
@@ -341,7 +347,7 @@ export default function RadarSection() {
                 <MultiSelectDropdown
                   options={offeringOptions}
                   selected={selectedOfferings}
-                  onChange={setSelectedOfferings}
+                  onChange={(v) => { setSelectedOfferings(v); resetScroll(); }}
                   placeholder={lang === "de" ? "Angebote auswählen..." : "Select offerings..."}
                 />
               </div>
@@ -353,7 +359,7 @@ export default function RadarSection() {
                 <input
                   type="checkbox"
                   checked={accessibleToAll}
-                  onChange={(e) => setAccessibleToAll(e.target.checked)}
+                  onChange={(e) => { setAccessibleToAll(e.target.checked); resetScroll(); }}
                   className="rounded border-gray-300"
                 />
                 {lang === "de" ? "Zugänglich für alle Gründer" : "Accessible to all founders"}
@@ -362,7 +368,7 @@ export default function RadarSection() {
                 <input
                   type="checkbox"
                   checked={deeptechOnly}
-                  onChange={(e) => setDeeptechOnly(e.target.checked)}
+                  onChange={(e) => { setDeeptechOnly(e.target.checked); resetScroll(); }}
                   className="rounded border-gray-300"
                 />
                 {lang === "de" ? "Nur Deep-Tech spezifisch" : "Deep-Tech specific only"}
@@ -380,6 +386,7 @@ export default function RadarSection() {
                     setSelectedOfferings([]);
                     setAccessibleToAll(false);
                     setDeeptechOnly(false);
+                    resetScroll();
                   }}
                   className="text-xs text-gray-400 hover:text-gray-600 underline"
                 >
@@ -434,10 +441,20 @@ export default function RadarSection() {
                 {t("radar.noresults")}
               </div>
             ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
-                {filtered.map((program) => (
-                  <ProgramCard key={program.id} program={program} lang={lang} t={t} />
-                ))}
+              <div className="relative">
+                <div
+                  ref={scrollRef}
+                  className="overflow-y-auto pr-1"
+                  style={{ maxHeight: "740px" }}
+                >
+                  <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 pb-4">
+                    {filtered.map((program) => (
+                      <ProgramCard key={program.id} program={program} lang={lang} t={t} />
+                    ))}
+                  </div>
+                </div>
+                {/* fade hint at bottom */}
+                <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-white to-transparent" />
               </div>
             )}
           </>
