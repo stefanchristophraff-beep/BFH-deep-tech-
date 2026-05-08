@@ -2,39 +2,53 @@
 
 import { useLanguage } from "@/app/context/LanguageContext";
 
-// Switzerland border outline — derived from geographic coordinates (clockwise from NW)
-// ViewBox: 0 0 570 340
-const SWITZERLAND_PATH = [
-  "M 67 62",    // Jura NW
-  "L 109 41",   // Rhine NW
-  "L 170 41",   // Rhine W
-  "L 196 0",    // Schaffhausen bump (north protrusion)
-  "L 314 0",    // Rhine E
-  "L 344 31",   // Lake Constance approach
-  "L 423 37",   // Lake Constance E
-  "L 442 44",   // NE corner
-  "L 451 96",   // E border going south
-  "L 432 122",  // Liechtenstein notch (slight west)
-  "L 492 113",  // Engadin protrusion (east ear)
-  "L 543 152",  // SE tip — Martina/Inn valley
-  "L 500 202",  // SE continuing SW
-  "L 420 266",  // Approaching Ticino
-  "L 367 320",  // Ticino — southernmost point
-  "L 337 266",  // Locarno heading NW
-  "L 310 232",  // Maggiore area
-  "L 259 296",  // Formazza — deep south valley
-  "L 241 232",  // Simplon area
-  "L 145 313",  // Great St. Bernard — SW deep valley
-  "L 126 252",  // Rhône valley W
-  "L 97 218",   // Vaud/Valais
-  "L 47 232",   // Geneva E shore
-  "L 16 234",   // Geneva — westernmost point
-  "L 16 201",   // Geneva N shore
-  "L 33 160",   // Nyon area
-  "L 48 124",   // Jura S
-  "L 33 83",    // Jura middle
-  "Z",
-].join(" ");
+/**
+ * Switzerland border — clockwise from NW Jura.
+ * Coordinates derived from real lon/lat anchor points:
+ *   x = (lon − 5.96) × 220,  y = (47.85 − lat) × 280
+ * ViewBox: 0 0 1010 590
+ *
+ * Key extremes:
+ *   N  Schaffhausen bump  (576,  11)
+ *   E  Martina/Inn        (994, 272)
+ *   S  Chiasso (Ticino)   (673, 563)
+ *   W  Chancy (Geneva)    (  2, 477)
+ */
+const CH_PATH = `
+  M 244 118
+  L 361  76
+  L 427  78
+  L 515  56
+  L 576  11
+  L 614  45
+  L 708  45
+  L 774  84
+  L 810  84
+  L 827 182
+  L 772 210
+  L 889 260
+  L 994 272
+  L 983 344
+  L 845 420
+  L 772 468
+  L 673 563
+  L 664 518
+  L 620 470
+  L 559 518
+  L 455 510
+  L 449 462
+  L 361 412
+  L 266 563
+  L 206 448
+  L   2 477
+  L  30 459
+  L  64 411
+  L 151 371
+  L 149 298
+  L  97 224
+  L 123 154
+  Z
+`.trim();
 
 export default function Hero() {
   const { t } = useLanguage();
@@ -48,27 +62,23 @@ export default function Hero() {
       className="relative pt-16 overflow-hidden"
       style={{ backgroundColor: "var(--bfh-navy)" }}
     >
-      {/* Switzerland map — decorative background, right-aligned */}
-      <div
-        className="absolute inset-0 pointer-events-none select-none flex items-center justify-end"
+      {/* Switzerland outline — decorative background */}
+      <svg
+        viewBox="-10 -20 1030 610"
+        preserveAspectRatio="xMidYMid meet"
         aria-hidden="true"
+        className="pointer-events-none select-none absolute inset-0 w-full h-full"
+        style={{ opacity: 0.1 }}
       >
-        <svg
-          viewBox="0 0 570 340"
-          preserveAspectRatio="xMidYMid meet"
-          className="h-[90%] w-auto"
-          style={{ transform: "translateX(8%)", opacity: 0.12 }}
-        >
-          <path
-            d={SWITZERLAND_PATH}
-            fill="none"
-            stroke="white"
-            strokeWidth="3"
-            strokeLinejoin="round"
-            strokeLinecap="round"
-          />
-        </svg>
-      </div>
+        <path
+          d={CH_PATH}
+          fill="none"
+          stroke="white"
+          strokeWidth="4"
+          strokeLinejoin="miter"
+          strokeLinecap="square"
+        />
+      </svg>
 
       {/* Yellow left accent line */}
       <div
@@ -151,10 +161,7 @@ export default function Hero() {
               { value: t("hero.stat3.value"), label: t("hero.stat3.label") },
             ].map((stat) => (
               <div key={stat.label}>
-                <div
-                  className="text-3xl font-900 leading-none"
-                  style={{ color: "var(--bfh-yellow)" }}
-                >
+                <div className="text-3xl font-900 leading-none" style={{ color: "var(--bfh-yellow)" }}>
                   {stat.value}
                 </div>
                 <div className="text-sm mt-1" style={{ color: "rgba(255,255,255,0.6)" }}>
