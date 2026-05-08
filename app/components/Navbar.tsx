@@ -30,8 +30,16 @@ export default function Navbar() {
               <div className="font-700 text-sm text-[#1a1a1a] leading-none">
                 Deep Tech Radar
               </div>
-              <div className="text-xs text-[#6b7280] leading-none mt-0.5">
-                Berner Fachhochschule
+              <div className="flex items-center gap-1.5 mt-0.5">
+                <span className="text-xs text-[#6b7280] leading-none">
+                  Berner Fachhochschule
+                </span>
+                {/* Swiss flag */}
+                <svg width="14" height="14" viewBox="0 0 20 20" aria-label="Schweizer Flagge">
+                  <rect width="20" height="20" fill="#FF0000" />
+                  <rect x="8.5" y="3" width="3" height="14" fill="#FFFFFF" />
+                  <rect x="3" y="8.5" width="14" height="3" fill="#FFFFFF" />
+                </svg>
               </div>
             </div>
           </div>
