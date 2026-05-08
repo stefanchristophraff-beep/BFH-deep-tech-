@@ -145,18 +145,6 @@ export default function Hero() {
         />
       </svg>
 
-      {/* Swiss flag — decorative top right */}
-      <svg
-        viewBox="0 0 32 32"
-        aria-hidden="true"
-        className="pointer-events-none select-none absolute w-28 h-28 opacity-20"
-        style={{ top: "42%", right: "36%" }}
-      >
-        <rect width="32" height="32" fill="white" />
-        <rect x="6" y="13" width="20" height="6" fill="var(--bfh-navy)" />
-        <rect x="13" y="6" width="6" height="20" fill="var(--bfh-navy)" />
-      </svg>
-
       {/* Yellow left accent line */}
       <div
         className="absolute left-0 top-0 bottom-0 w-1"
@@ -186,12 +174,14 @@ export default function Hero() {
               {t("hero.title")}
             </h1>
           </div>
-          <p className="text-xl sm:text-2xl lg:text-3xl mb-6" style={{ color: "rgba(255,255,255,0.85)", fontWeight: 400 }}>
-            {lang === "de" ? "Finde" : "Find"}{" "}
-            <span style={{ color: "var(--bfh-yellow)", fontWeight: 900 }}>#</span>
-            <TypewriterText lang={lang} />{" "}
-            {lang === "de" ? "für dein Deep-Tech Startup" : "for your Deep-Tech Startup"}
-          </p>
+          <div className="mb-6 min-h-[4rem] sm:min-h-[3.5rem]">
+            <p className="text-xl sm:text-2xl lg:text-3xl" style={{ color: "rgba(255,255,255,0.85)", fontWeight: 400 }}>
+              {lang === "de" ? "Finde" : "Find"}{" "}
+              <span style={{ color: "var(--bfh-yellow)", fontWeight: 900 }}>#</span>
+              <TypewriterText lang={lang} />{" "}
+              {lang === "de" ? "für dein Deep-Tech Startup" : "for your Deep-Tech Startup"}
+            </p>
+          </div>
 
           <p
             className="text-lg sm:text-xl leading-relaxed mb-10 max-w-2xl"
