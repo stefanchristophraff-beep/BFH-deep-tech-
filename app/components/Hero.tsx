@@ -2,9 +2,39 @@
 
 import { useLanguage } from "@/app/context/LanguageContext";
 
-// Simplified outline of Switzerland (clockwise from Basel, key border points)
-const SWITZERLAND_PATH =
-  "M 178 25 L 222 18 L 268 10 L 310 5 L 355 0 L 388 8 L 400 38 L 392 68 L 390 85 L 430 100 L 478 112 L 448 158 L 415 178 L 368 230 L 340 252 L 308 248 L 285 205 L 258 225 L 220 238 L 178 242 L 138 240 L 82 228 L 22 202 L 12 188 L 28 165 L 48 128 L 48 100 L 55 72 L 108 48 Z";
+// Switzerland border outline — derived from geographic coordinates (clockwise from NW)
+// ViewBox: 0 0 570 340
+const SWITZERLAND_PATH = [
+  "M 67 62",    // Jura NW
+  "L 109 41",   // Rhine NW
+  "L 170 41",   // Rhine W
+  "L 196 0",    // Schaffhausen bump (north protrusion)
+  "L 314 0",    // Rhine E
+  "L 344 31",   // Lake Constance approach
+  "L 423 37",   // Lake Constance E
+  "L 442 44",   // NE corner
+  "L 451 96",   // E border going south
+  "L 432 122",  // Liechtenstein notch (slight west)
+  "L 492 113",  // Engadin protrusion (east ear)
+  "L 543 152",  // SE tip — Martina/Inn valley
+  "L 500 202",  // SE continuing SW
+  "L 420 266",  // Approaching Ticino
+  "L 367 320",  // Ticino — southernmost point
+  "L 337 266",  // Locarno heading NW
+  "L 310 232",  // Maggiore area
+  "L 259 296",  // Formazza — deep south valley
+  "L 241 232",  // Simplon area
+  "L 145 313",  // Great St. Bernard — SW deep valley
+  "L 126 252",  // Rhône valley W
+  "L 97 218",   // Vaud/Valais
+  "L 47 232",   // Geneva E shore
+  "L 16 234",   // Geneva — westernmost point
+  "L 16 201",   // Geneva N shore
+  "L 33 160",   // Nyon area
+  "L 48 124",   // Jura S
+  "L 33 83",    // Jura middle
+  "Z",
+].join(" ");
 
 export default function Hero() {
   const { t } = useLanguage();
@@ -18,26 +48,24 @@ export default function Hero() {
       className="relative pt-16 overflow-hidden"
       style={{ backgroundColor: "var(--bfh-navy)" }}
     >
-      {/* Switzerland map — decorative background */}
-      <div className="absolute inset-0 flex items-center justify-end pointer-events-none select-none">
+      {/* Switzerland map — decorative background, right-aligned */}
+      <div
+        className="absolute inset-0 pointer-events-none select-none flex items-center justify-end"
+        aria-hidden="true"
+      >
         <svg
-          viewBox="0 0 500 260"
-          className="h-full w-auto opacity-[0.07]"
-          style={{ minWidth: "600px", transform: "translateX(15%) translateY(5%)" }}
-          aria-hidden="true"
+          viewBox="0 0 570 340"
+          preserveAspectRatio="xMidYMid meet"
+          className="h-[90%] w-auto"
+          style={{ transform: "translateX(8%)", opacity: 0.12 }}
         >
-          {/* Filled shape */}
-          <path
-            d={SWITZERLAND_PATH}
-            fill="white"
-          />
-          {/* Outline on top */}
           <path
             d={SWITZERLAND_PATH}
             fill="none"
             stroke="white"
-            strokeWidth="2"
-            opacity="0.6"
+            strokeWidth="3"
+            strokeLinejoin="round"
+            strokeLinecap="round"
           />
         </svg>
       </div>
@@ -94,7 +122,11 @@ export default function Hero() {
             <button
               onClick={() => scrollTo("feedback")}
               className="font-600 px-8 py-4 text-base transition-colors"
-              style={{ border: "1px solid rgba(255,255,255,0.3)", color: "rgba(255,255,255,0.85)", backgroundColor: "transparent" }}
+              style={{
+                border: "1px solid rgba(255,255,255,0.3)",
+                color: "rgba(255,255,255,0.85)",
+                backgroundColor: "transparent",
+              }}
               onMouseOver={(e) => {
                 (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(255,255,255,0.6)";
                 (e.currentTarget as HTMLButtonElement).style.color = "#fff";
@@ -119,7 +151,10 @@ export default function Hero() {
               { value: t("hero.stat3.value"), label: t("hero.stat3.label") },
             ].map((stat) => (
               <div key={stat.label}>
-                <div className="text-3xl font-900 leading-none" style={{ color: "var(--bfh-yellow)" }}>
+                <div
+                  className="text-3xl font-900 leading-none"
+                  style={{ color: "var(--bfh-yellow)" }}
+                >
                   {stat.value}
                 </div>
                 <div className="text-sm mt-1" style={{ color: "rgba(255,255,255,0.6)" }}>
@@ -132,7 +167,10 @@ export default function Hero() {
       </div>
 
       {/* Bottom fade into white */}
-      <div className="h-8 w-full" style={{ background: "linear-gradient(to bottom, transparent, #ffffff)" }} />
+      <div
+        className="h-8 w-full"
+        style={{ background: "linear-gradient(to bottom, transparent, #ffffff)" }}
+      />
     </section>
   );
 }
