@@ -18,7 +18,7 @@ const FAQ_DE = [
   },
   {
     q: "Auf welcher Datenbasis beruht der Radar?",
-    a: "Für die Erstellung des Radars wurden 169 Schweizer Unterstützungsprogramme systematisch analysiert. Zur Validierung der Ergebnisse wurden zudem acht qualitative Interviews mit Deep-Tech-Gründer:innen, Coaches und Innosuisse-Expert:innen geführt, um die tatsächlichen Bedürfnisse der Praxis mit den bestehenden Angeboten abzugleichen.",
+    a: "Für die Erstellung des Radars wurden 169 Schweizer Unterstützungsprogramme systematisch analysiert. Zur Validierung der Ergebnisse wurden zudem zahlreiche qualitative Interviews mit Deep-Tech-Gründer:innen, Coaches und Innosuisse-Expert:innen geführt.",
   },
   {
     q: "Welche Rolle spielen TRL und MRL bei der Einordnung?",
