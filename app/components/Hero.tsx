@@ -104,13 +104,14 @@ export default function Hero() {
             {t("hero.badge")} — Living Database
           </div>
 
-          <h1 className="flex items-stretch gap-4 text-4xl sm:text-5xl lg:text-6xl font-900 leading-tight mb-6 text-white">
+          <h1 className="flex items-center gap-4 text-4xl sm:text-5xl lg:text-6xl font-900 leading-tight mb-6 text-white">
             <span>{t("hero.title")}</span>
             <svg
+              width="40"
+              height="40"
               viewBox="0 0 32 32"
               aria-label="Schweizer Flagge"
-              className="shrink-0 w-auto self-stretch"
-              preserveAspectRatio="xMidYMid meet"
+              className="shrink-0"
             >
               <rect width="32" height="32" fill="#FF0000" />
               <rect x="6" y="13" width="20" height="6" fill="#FFFFFF" />
