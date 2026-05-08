@@ -103,7 +103,7 @@ export default function About() {
                 Berner Fachhochschule
               </div>
               <div className="text-sm" style={{ color: "var(--bfh-muted)" }}>
-                School of Engineering &amp; Computer Science
+                Institute for Digital Technology Management
               </div>
             </div>
           </div>
