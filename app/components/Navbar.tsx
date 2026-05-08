@@ -28,7 +28,7 @@ export default function Navbar() {
             </div>
             <div className="leading-tight">
               <div className="font-700 text-sm text-[#1a1a1a] leading-none">
-                Deep Tech Radar
+                Deep-Tech Startup Radar
               </div>
               <div className="text-xs text-[#6b7280] leading-none mt-0.5">
                 Berner Fachhochschule
