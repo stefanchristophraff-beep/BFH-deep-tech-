@@ -14,7 +14,7 @@ const FAQ_DE = [
   },
   {
     q: "Wer hat den Radar erstellt?",
-    a: "Das Tool wurde von Donat Rüttimann im Rahmen einer Masterthesis an der Berner Fachhochschule (BFH) entwickelt. Das Projekt entstand in enger Zusammenarbeit mit der Schweizerischen Agentur für Innovationsförderung Innosuisse, die ihr Netzwerk für die empirische Analyse zur Verfügung stellte.",
+    a: "Das Tool wurde im Rahmen einer Masterthesis an der Berner Fachhochschule (BFH) entwickelt. Das Projekt entstand darüber hinaus in enger Zusammenarbeit mit der Schweizerischen Agentur für Innovationsförderung Innosuisse, die ihr Netzwerk für die empirische Analyse zur Verfügung stellte.",
   },
   {
     q: 'Was genau wird im Kontext dieses Tools unter „Deep-Tech“ verstanden?',
