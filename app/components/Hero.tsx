@@ -111,7 +111,7 @@ export default function Hero() {
               height="120"
               viewBox="0 0 32 32"
               aria-label="Schweizer Flagge"
-              className="shrink-0"
+              className="shrink-0 ml-8"
             >
               <rect width="32" height="32" fill="#FF0000" />
               <rect x="6" y="13" width="20" height="6" fill="#FFFFFF" />
