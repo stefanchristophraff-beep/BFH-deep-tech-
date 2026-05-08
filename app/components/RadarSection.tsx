@@ -1,17 +1,119 @@
 "use client";
 
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, useRef } from "react";
 import { useLanguage } from "@/app/context/LanguageContext";
 import type { AirtableProgram } from "@/app/api/programs/route";
+
+const PHASES = [
+  { label: "Early Stage (1-3)", value: "Early Stage (1-3)" },
+  { label: "Mid Stage (4-6)", value: "Mid Stage (4-6)" },
+  { label: "Later Stage (7-9)", value: "Later Stage (7-9)" },
+];
+
+function MultiSelectDropdown({
+  options,
+  selected,
+  onChange,
+  placeholder,
+}: {
+  options: string[];
+  selected: string[];
+  onChange: (val: string[]) => void;
+  placeholder: string;
+}) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleClick(e: MouseEvent) {
+      if (ref.current && !ref.current.contains(e.target as Node)) {
+        setOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClick);
+    return () => document.removeEventListener("mousedown", handleClick);
+  }, []);
+
+  const toggle = (val: string) => {
+    if (selected.includes(val)) {
+      onChange(selected.filter((s) => s !== val));
+    } else {
+      onChange([...selected, val]);
+    }
+  };
+
+  const displayText =
+    selected.length === 0
+      ? placeholder
+      : selected.length === 1
+      ? selected[0]
+      : `${selected.length} selected`;
+
+  return (
+    <div ref={ref} className="relative">
+      <button
+        type="button"
+        onClick={() => setOpen(!open)}
+        className="w-full flex items-center justify-between px-3 py-2 text-sm border border-gray-300 rounded bg-white text-left hover:border-gray-400 transition-colors"
+      >
+        <span className={selected.length === 0 ? "text-gray-400" : "text-gray-800"}>
+          {displayText}
+        </span>
+        <svg
+          className={`w-4 h-4 text-gray-400 transition-transform ${open ? "rotate-180" : ""}`}
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+        </svg>
+      </button>
+      {open && options.length > 0 && (
+        <div className="absolute z-20 w-full mt-1 bg-white border border-gray-200 rounded shadow-lg max-h-60 overflow-y-auto">
+          {options.map((opt) => (
+            <label
+              key={opt}
+              className="flex items-center gap-2 px-3 py-2 hover:bg-gray-50 cursor-pointer text-sm"
+            >
+              <input
+                type="checkbox"
+                checked={selected.includes(opt)}
+                onChange={() => toggle(opt)}
+                className="rounded border-gray-300"
+              />
+              <span className="text-gray-700">{opt}</span>
+            </label>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function extractUniqueValues(programs: AirtableProgram[], field: keyof AirtableProgram): string[] {
+  const vals = programs
+    .map((p) => p[field] as string)
+    .filter(Boolean)
+    .flatMap((v) => v.split(",").map((s) => s.trim()))
+    .filter(Boolean);
+  return Array.from(new Set(vals)).sort();
+}
 
 export default function RadarSection() {
   const { lang, t } = useLanguage();
   const [programs, setPrograms] = useState<AirtableProgram[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+  const [filtersOpen, setFiltersOpen] = useState(true);
+
+  // Filter state
   const [search, setSearch] = useState("");
-  const [activeCluster, setActiveCluster] = useState("all");
-  const [activePhase, setActivePhase] = useState("all");
+  const [activePhases, setActivePhases] = useState<string[]>([]);
+  const [selectedClusters, setSelectedClusters] = useState<string[]>([]);
+  const [selectedSkills, setSelectedSkills] = useState<string[]>([]);
+  const [selectedOfferings, setSelectedOfferings] = useState<string[]>([]);
+  const [accessibleToAll, setAccessibleToAll] = useState(false);
+  const [deeptechOnly, setDeeptechOnly] = useState(false);
 
   useEffect(() => {
     fetch("/api/programs")
@@ -26,24 +128,23 @@ export default function RadarSection() {
       });
   }, []);
 
-  // Derive unique clusters + phases from data
-  const clusters = useMemo(() => {
-    const vals = programs
-      .map((p) => p.cluster)
-      .filter(Boolean)
-      .flatMap((c) => c.split(",").map((s) => s.trim()))
-      .filter(Boolean);
-    return ["all", ...Array.from(new Set(vals)).sort()];
-  }, [programs]);
+  const clusterOptions = useMemo(() => extractUniqueValues(programs, "cluster"), [programs]);
+  const skillOptions = useMemo(() => extractUniqueValues(programs, "commercialisationSkills"), [programs]);
+  const offeringOptions = useMemo(() => extractUniqueValues(programs, "offerings"), [programs]);
 
-  const phases = useMemo(() => {
-    const vals = programs
-      .map((p) => p.phase)
-      .filter(Boolean)
-      .flatMap((p) => p.split(",").map((s) => s.trim()))
-      .filter(Boolean);
-    return ["all", ...Array.from(new Set(vals)).sort()];
-  }, [programs]);
+  const togglePhase = (phase: string) => {
+    setActivePhases((prev) =>
+      prev.includes(phase) ? prev.filter((p) => p !== phase) : [...prev, phase]
+    );
+  };
+
+  const hasActiveFilters =
+    activePhases.length > 0 ||
+    selectedClusters.length > 0 ||
+    selectedSkills.length > 0 ||
+    selectedOfferings.length > 0 ||
+    accessibleToAll ||
+    deeptechOnly;
 
   const filtered = useMemo(() => {
     const q = search.toLowerCase();
@@ -55,25 +156,52 @@ export default function RadarSection() {
         p.purpose.toLowerCase().includes(q) ||
         p.offerings.toLowerCase().includes(q) ||
         p.targetGroup.toLowerCase().includes(q) ||
-        p.cluster.toLowerCase().includes(q);
+        p.cluster.toLowerCase().includes(q) ||
+        p.commercialisationSkills.toLowerCase().includes(q);
 
-      const matchesCluster =
-        activeCluster === "all" ||
-        p.cluster
-          .split(",")
-          .map((s) => s.trim())
-          .includes(activeCluster);
-
+      const programPhases = p.phase.split(",").map((s) => s.trim());
       const matchesPhase =
-        activePhase === "all" ||
-        p.phase
-          .split(",")
-          .map((s) => s.trim())
-          .includes(activePhase);
+        activePhases.length === 0 ||
+        activePhases.some((ph) => programPhases.includes(ph));
 
-      return matchesSearch && matchesCluster && matchesPhase;
+      const programClusters = p.cluster.split(",").map((s) => s.trim());
+      const matchesCluster =
+        selectedClusters.length === 0 ||
+        selectedClusters.some((c) => programClusters.includes(c));
+
+      const programSkills = p.commercialisationSkills.split(",").map((s) => s.trim());
+      const matchesSkills =
+        selectedSkills.length === 0 ||
+        selectedSkills.some((sk) => programSkills.includes(sk));
+
+      const programOfferings = p.offerings.split(",").map((s) => s.trim());
+      const matchesOfferings =
+        selectedOfferings.length === 0 ||
+        selectedOfferings.some((o) => programOfferings.includes(o));
+
+      const matchesAccessible = !accessibleToAll || p.accessibleToAllFounders;
+      const matchesDeeptech = !deeptechOnly || p.deeptechSpecific;
+
+      return (
+        matchesSearch &&
+        matchesPhase &&
+        matchesCluster &&
+        matchesSkills &&
+        matchesOfferings &&
+        matchesAccessible &&
+        matchesDeeptech
+      );
     });
-  }, [search, activeCluster, activePhase, programs]);
+  }, [
+    search,
+    activePhases,
+    selectedClusters,
+    selectedSkills,
+    selectedOfferings,
+    accessibleToAll,
+    deeptechOnly,
+    programs,
+  ]);
 
   return (
     <section id="radar" className="py-24 bg-white">
@@ -88,87 +216,181 @@ export default function RadarSection() {
           </p>
         </div>
 
-        {/* Search */}
-        <div className="relative mb-5">
-          <svg
-            className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-            />
-          </svg>
-          <input
-            type="text"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            placeholder={t("radar.search.placeholder")}
-            className="w-full pl-12 pr-4 py-4 text-base border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-400 bg-gray-50 placeholder:text-gray-400"
-          />
-          {search && (
-            <button
-              onClick={() => setSearch("")}
-              className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+        {/* Search + Filters toggle */}
+        <div className="flex gap-3 mb-3">
+          <div className="relative flex-1">
+            <svg
+              className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
             >
-              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-          )}
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+              />
+            </svg>
+            <input
+              type="text"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder={t("radar.search.placeholder")}
+              className="w-full pl-12 pr-4 py-3 text-base border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-400 bg-gray-50 placeholder:text-gray-400"
+            />
+            {search && (
+              <button
+                onClick={() => setSearch("")}
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+              >
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            )}
+          </div>
+          <button
+            onClick={() => setFiltersOpen(!filtersOpen)}
+            className={`flex items-center gap-2 px-4 py-3 border rounded-xl text-sm font-medium transition-all ${
+              hasActiveFilters
+                ? "border-blue-400 bg-blue-50 text-blue-700"
+                : "border-gray-200 bg-white text-gray-600 hover:border-gray-300"
+            }`}
+          >
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2a1 1 0 01-.293.707L13 13.414V19a1 1 0 01-.553.894l-4 2A1 1 0 017 21v-7.586L3.293 6.707A1 1 0 013 6V4z"
+              />
+            </svg>
+            {lang === "de" ? "Filter" : "Filters"}
+            {hasActiveFilters && (
+              <span className="bg-blue-600 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
+                {activePhases.length +
+                  selectedClusters.length +
+                  selectedSkills.length +
+                  selectedOfferings.length +
+                  (accessibleToAll ? 1 : 0) +
+                  (deeptechOnly ? 1 : 0)}
+              </span>
+            )}
+          </button>
         </div>
 
-        {/* Filters */}
-        {!loading && !error && (
-          <div className="space-y-3 mb-8">
-            {/* Cluster filter */}
-            <div className="flex flex-wrap gap-2">
-              {clusters.map((c) => (
-                <button
-                  key={c}
-                  onClick={() => setActiveCluster(c)}
-                  className={`px-3 py-1.5 rounded-full text-sm font-medium border transition-all ${
-                    activeCluster === c
-                      ? "bg-blue-600 text-white border-blue-600"
-                      : "bg-white text-gray-600 border-gray-200 hover:border-blue-300 hover:text-blue-600"
-                  }`}
-                >
-                  {c === "all"
-                    ? lang === "de"
-                      ? "Alle Cluster"
-                      : "All Clusters"
-                    : c}
-                </button>
-              ))}
+        {/* Filter panel */}
+        {!loading && !error && filtersOpen && (
+          <div className="bg-gray-50 border border-gray-200 rounded-xl p-4 mb-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
+              {/* Phase */}
+              <div>
+                <p className="text-xs font-semibold text-gray-500 mb-2">
+                  {lang === "de" ? "Phase (TRL/MRL)" : "Phase (TRL/MRL)"}
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {PHASES.map((ph) => (
+                    <button
+                      key={ph.value}
+                      type="button"
+                      onClick={() => togglePhase(ph.value)}
+                      className={`px-3 py-1.5 rounded border text-sm font-medium transition-all ${
+                        activePhases.includes(ph.value)
+                          ? "bg-gray-800 text-white border-gray-800"
+                          : "bg-white text-gray-700 border-gray-300 hover:border-gray-400"
+                      }`}
+                    >
+                      {ph.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Commercialisation Skills */}
+              <div>
+                <p className="text-xs font-semibold text-gray-500 mb-2">
+                  {lang === "de" ? "Vermarktungskompetenzen" : "Commercialisation Skills"}
+                </p>
+                <MultiSelectDropdown
+                  options={skillOptions}
+                  selected={selectedSkills}
+                  onChange={setSelectedSkills}
+                  placeholder={lang === "de" ? "Kompetenzen auswählen..." : "Select skills..."}
+                />
+              </div>
+
+              {/* Cluster */}
+              <div>
+                <p className="text-xs font-semibold text-gray-500 mb-2">
+                  {lang === "de" ? "Cluster" : "Cluster"}
+                </p>
+                <MultiSelectDropdown
+                  options={clusterOptions}
+                  selected={selectedClusters}
+                  onChange={setSelectedClusters}
+                  placeholder={lang === "de" ? "Cluster auswählen..." : "Select clusters..."}
+                />
+              </div>
+
+              {/* Offerings */}
+              <div>
+                <p className="text-xs font-semibold text-gray-500 mb-2">
+                  {lang === "de" ? "Angebote" : "Offerings"}
+                </p>
+                <MultiSelectDropdown
+                  options={offeringOptions}
+                  selected={selectedOfferings}
+                  onChange={setSelectedOfferings}
+                  placeholder={lang === "de" ? "Angebote auswählen..." : "Select offerings..."}
+                />
+              </div>
             </div>
-            {/* Phase filter */}
-            <div className="flex flex-wrap gap-2">
-              {phases.map((p) => (
-                <button
-                  key={p}
-                  onClick={() => setActivePhase(p)}
-                  className={`px-3 py-1.5 rounded-full text-sm font-medium border transition-all ${
-                    activePhase === p
-                      ? "bg-cyan-600 text-white border-cyan-600"
-                      : "bg-white text-gray-600 border-gray-200 hover:border-cyan-300 hover:text-cyan-600"
-                  }`}
-                >
-                  {p === "all"
-                    ? lang === "de"
-                      ? "Alle Phasen"
-                      : "All Phases"
-                    : p}
-                </button>
-              ))}
+
+            {/* Checkboxes */}
+            <div className="flex flex-wrap gap-6 mt-4 pt-4 border-t border-gray-200">
+              <label className="flex items-center gap-2 cursor-pointer text-sm text-gray-700">
+                <input
+                  type="checkbox"
+                  checked={accessibleToAll}
+                  onChange={(e) => setAccessibleToAll(e.target.checked)}
+                  className="rounded border-gray-300"
+                />
+                {lang === "de" ? "Zugänglich für alle Gründer" : "Accessible to all founders"}
+              </label>
+              <label className="flex items-center gap-2 cursor-pointer text-sm text-gray-700">
+                <input
+                  type="checkbox"
+                  checked={deeptechOnly}
+                  onChange={(e) => setDeeptechOnly(e.target.checked)}
+                  className="rounded border-gray-300"
+                />
+                {lang === "de" ? "Nur Deep-Tech spezifisch" : "Deep-Tech specific only"}
+              </label>
             </div>
+
+            {/* Reset filters */}
+            {hasActiveFilters && (
+              <div className="mt-3 text-right">
+                <button
+                  onClick={() => {
+                    setActivePhases([]);
+                    setSelectedClusters([]);
+                    setSelectedSkills([]);
+                    setSelectedOfferings([]);
+                    setAccessibleToAll(false);
+                    setDeeptechOnly(false);
+                  }}
+                  className="text-xs text-gray-400 hover:text-gray-600 underline"
+                >
+                  {lang === "de" ? "Filter zurücksetzen" : "Reset filters"}
+                </button>
+              </div>
+            )}
           </div>
         )}
 
-        {/* States */}
+        {/* Loading */}
         {loading && (
           <div className="flex flex-col items-center justify-center py-24 text-gray-400">
             <svg className="w-8 h-8 animate-spin mb-3 text-blue-400" fill="none" viewBox="0 0 24 24">
@@ -189,15 +411,25 @@ export default function RadarSection() {
 
         {!loading && !error && (
           <>
-            <div className="text-sm text-gray-400 mb-4">
+            <div className="text-sm text-blue-600 mb-4">
               {filtered.length}{" "}
               {lang === "de" ? "Programme gefunden" : "programs found"}
             </div>
 
             {filtered.length === 0 ? (
               <div className="text-center py-20 text-gray-400">
-                <svg className="w-12 h-12 mx-auto mb-3 opacity-40" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                <svg
+                  className="w-12 h-12 mx-auto mb-3 opacity-40"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={1.5}
+                    d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
                 </svg>
                 {t("radar.noresults")}
               </div>
