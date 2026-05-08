@@ -258,7 +258,7 @@ export default function Hero() {
               { name: "Berner Fachhochschule", domain: "bfh.ch" },
               { name: "Innosuisse", domain: "innosuisse.ch" },
             ].map(({ name, domain }) => (
-              <div key={domain} className="flex items-center gap-2.5 px-4 py-2 rounded" style={{ backgroundColor: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.15)", width: "260px" }}>
+              <div key={domain} className="flex items-center gap-2.5 px-4 py-2 rounded" style={{ backgroundColor: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.15)" }}>
                 <img
                   src={`https://www.google.com/s2/favicons?domain=${domain}&sz=64`}
                   alt={name}
