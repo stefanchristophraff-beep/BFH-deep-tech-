@@ -23,7 +23,7 @@ export default function Navbar() {
                 className="font-black text-sm leading-none tracking-tight"
                 style={{ color: "var(--bfh-yellow)" }}
               >
-                BFH
+                IDTM
               </span>
             </div>
             <div className="leading-tight">
