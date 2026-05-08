@@ -37,27 +37,23 @@ const FAQ_DE = [
 const FAQ_EN = [
   {
     q: "What is the Deep-Tech Startup Radar?",
-    a: "The Deep-Tech Startup Radar is an interactive tool developed to systematically map and make transparent the Swiss support landscape for deep-tech startups. It provides a structured overview of funding programs and assigns them to the various stages of company development.",
+    a: "The Deep-Tech Startup Radar is an interactive tool developed to systematically map and make transparent the Swiss support landscape for deep-tech startups. It provides a structured overview of support offerings and organises them along various phases of company development, offering types and technologies.",
   },
   {
     q: "Why was this tool developed?",
-    a: "Although Switzerland ranks at the top of innovation rankings, the funding landscape is highly fragmented and opaque. Moreover, many existing programs are historically oriented towards digital business models (software) and neglect the specific needs of deep-tech startups, such as long development cycles, high capital intensity, and complex hardware scaling requirements. The radar aims to close this orientation gap.",
+    a: "Switzerland regularly ranks at the top of international innovation rankings – yet the funding landscape itself is fragmented and often difficult for founders to navigate. Deep-tech startups in particular depend on targeted support in their early stages, whether financial, technological or strategic in nature. In fact, more offerings already exist than many teams realise; they often go unused simply because they are not visible. This is precisely where the Radar comes in: it creates transparency about existing funding and support offerings and aims to help close a central orientation gap in the Swiss deep-tech ecosystem.",
   },
   {
     q: "Who created the Radar?",
-    a: "The tool was developed by Donat Rüttimann as part of a master's thesis at the Bern University of Applied Sciences (BFH). The project was created in close collaboration with the Swiss Innovation Agency Innosuisse, which provided its network for the empirical analysis.",
-  },
-  {
-    q: "What exactly is meant by 'Deep Tech' in this context?",
-    a: "The focus is exclusively on science-based startups with physical products or systems. Purely digital startups (e.g. SaaS) and the biotech sector were not considered in this specific analysis due to their different risk and commercialisation profiles.",
+    a: "The tool was developed as part of a master's thesis at the Bern University of Applied Sciences (BFH). The project was also created in close collaboration with the Swiss Innovation Agency Innosuisse, which provided its network for the empirical analysis.",
   },
   {
     q: "What data is the Radar based on?",
-    a: "169 Swiss support programs were systematically analysed for the creation of the radar. To validate the results, eight qualitative interviews were also conducted with deep-tech founders, coaches and Innosuisse experts to compare the actual needs of practice with the existing offerings.",
+    a: "169 Swiss support programs were systematically analysed for the creation of the Radar. Numerous qualitative interviews with deep-tech founders, coaches and Innosuisse experts were also conducted to validate the results.",
   },
   {
     q: "What role do TRL and MRL play in the classification?",
-    a: "The programs in the radar are structured according to Technology Readiness Levels (TRL) and Market Readiness Levels (MRL). This enables a precise assignment to the three phases of the venture journey:\n\nEarly Stage (TRL/MRL 1–3): Idea development and proof of concept.\nMid Stage (TRL/MRL 4–6): Validation and prototyping.\nLater Stage (TRL/MRL 7–9): Market entry and scaling.",
+    a: "The programs in the Radar are structured according to Technology Readiness Levels (TRL) and Market Readiness Levels (MRL). This enables a precise assignment to the three phases of the venture journey:\n\nEarly Stage (TRL/MRL 1–3): Idea development and proof of concept.\nMid Stage (TRL/MRL 4–6): Validation and prototyping.\nLater Stage (TRL/MRL 7–9): Market entry and scaling.",
   },
   {
     q: "What insights does the Radar provide about the Swiss funding landscape?",
@@ -65,7 +61,7 @@ const FAQ_EN = [
   },
   {
     q: "How does the Radar concretely help founders?",
-    a: "Founders can use the web application to search specifically for programs that match their current stage or technology cluster (e.g. Robotics, AI, Quantum). It is also possible to filter which programs promote specific commercialisation competencies such as IP strategy, fundraising, industry access or supply chain management.",
+    a: "Founders can use the web application to search specifically for programs that match their current phase or technology cluster (e.g. Robotics, AI, Quantum). It is also possible to filter which programs promote specific commercialisation competencies such as IP strategy, fundraising, industry access or supply chain management.",
   },
 ];
 
