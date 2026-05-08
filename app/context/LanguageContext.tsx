@@ -41,7 +41,7 @@ const translations: Record<Language, Record<string, string>> = {
       "Von Bundesförderung bis Kantonsprogrammen, von Acceleratoren bis Netzwerken – alles an einem Ort.",
     "about.card2.title": "Smarte Suche",
     "about.card2.desc":
-      "Filtere nach Technologiebereich, Unternehmensphase, Fördertyp und mehr, um die relevantesten Angebote zu finden.",
+      "Filtere nach Technologiebereich, Unternehmensphase, Fördertyp und mehr, um die relevantesten Angebote in der Schweiz für dein Startup zu finden.",
     "about.card3.title": "Living Database",
     "about.card3.desc":
       "Der Radar lebt vom Community-Input. Dein Feedback hilft uns, die Datenbank aktuell und vollständig zu halten.",
