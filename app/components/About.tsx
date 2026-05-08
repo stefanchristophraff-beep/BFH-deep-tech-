@@ -109,7 +109,7 @@ export default function About() {
           </div>
           <div className="hidden sm:block w-px h-12" style={{ backgroundColor: "var(--bfh-border)" }} />
           <p className="text-sm text-center sm:text-left max-w-md" style={{ color: "var(--bfh-body)" }}>
-            Der Startup Radar wird von der BFH entwickelt und unterstützt Gründerinnen und Gründer beim
+            Der Startup Radar wurde im Rahmen einer Masterthesis strukturiert entwickelt und unterstützt Gründerinnen und Gründer beim
             Navigieren des Schweizer Startup-Ökosystems.
           </p>
         </div>
