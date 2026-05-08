@@ -33,7 +33,7 @@ const translations: Record<Language, Record<string, string>> = {
     "hero.stat3.label": "wird laufend weiterentwickelt",
 
     // About
-    "about.title": "Was ist der Startup Radar?",
+    "about.title": "Was ist der Deep-Tech Startup Radar?",
     "about.subtitle":
       "Eine lebendige Datenbank, die kontinuierlich wächst – mit eurer Hilfe.",
     "about.card1.title": "Alle Programme auf einen Blick",
@@ -123,7 +123,7 @@ const translations: Record<Language, Record<string, string>> = {
     "hero.stat3.label": "continuously updated",
 
     // About
-    "about.title": "What is the Startup Radar?",
+    "about.title": "What is the Deep-Tech Startup Radar?",
     "about.subtitle":
       "A living database that grows continuously – with your help.",
     "about.card1.title": "All programs at a glance",
