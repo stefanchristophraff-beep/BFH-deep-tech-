@@ -129,14 +129,11 @@ export default function Team() {
               style={{ backgroundColor: "var(--bfh-navy)" }}
             >
               <span className="font-900 text-base" style={{ color: "var(--bfh-yellow)" }}>
-                BFH
+                IDTM
               </span>
             </div>
             <div>
               <div className="font-700" style={{ color: "var(--bfh-dark)" }}>
-                Berner Fachhochschule
-              </div>
-              <div className="text-sm" style={{ color: "var(--bfh-muted)" }}>
                 Institute for Digital Technology Management
               </div>
             </div>
