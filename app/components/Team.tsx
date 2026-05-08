@@ -113,6 +113,40 @@ export default function Team() {
             </div>
           ))}
         </div>
+        {/* BFH Banner */}
+        <div
+          className="mt-12 flex flex-col sm:flex-row items-center gap-6 p-8 border-l-4 bg-white"
+          style={{
+            borderLeftColor: "var(--bfh-navy)",
+            borderTop: "1px solid var(--bfh-border)",
+            borderRight: "1px solid var(--bfh-border)",
+            borderBottom: "1px solid var(--bfh-border)",
+          }}
+        >
+          <div className="flex items-center gap-4 shrink-0">
+            <div
+              className="w-14 h-14 flex items-center justify-center rounded-sm"
+              style={{ backgroundColor: "var(--bfh-navy)" }}
+            >
+              <span className="font-900 text-base" style={{ color: "var(--bfh-yellow)" }}>
+                BFH
+              </span>
+            </div>
+            <div>
+              <div className="font-700" style={{ color: "var(--bfh-dark)" }}>
+                Berner Fachhochschule
+              </div>
+              <div className="text-sm" style={{ color: "var(--bfh-muted)" }}>
+                Institute for Digital Technology Management
+              </div>
+            </div>
+          </div>
+          <div className="hidden sm:block w-px h-12" style={{ backgroundColor: "var(--bfh-border)" }} />
+          <p className="text-sm text-center sm:text-left max-w-md" style={{ color: "var(--bfh-body)" }}>
+            Der Startup Radar wurde im Rahmen einer Masterthesis strukturiert entwickelt und unterstützt Gründerinnen und Gründer beim
+            Navigieren des Schweizer Startup-Ökosystems.
+          </p>
+        </div>
       </div>
     </section>
   );
