@@ -60,7 +60,7 @@ export default function Footer() {
           }}
         >
           <p>
-            © {new Date().getFullYear()} Berner Fachhochschule — Deep Tech Radar.{" "}
+            © {new Date().getFullYear()} Institute for Digital Technology Management — Deep Tech Radar.{" "}
             {t("footer.rights")}
           </p>
           <div className="flex items-center gap-2">
