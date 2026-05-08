@@ -115,7 +115,7 @@ export default function FAQ() {
 
   return (
     <section id="faq" className="py-24" style={{ backgroundColor: "var(--bfh-surface)" }}>
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-10">
           <h2 className="text-3xl sm:text-4xl font-700 mb-2" style={{ color: "var(--bfh-dark)" }}>
             {lang === "de" ? "Häufig gestellte Fragen" : "Frequently Asked Questions"}
