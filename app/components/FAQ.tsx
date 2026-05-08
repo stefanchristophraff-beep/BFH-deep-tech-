@@ -10,7 +10,7 @@ const FAQ_DE = [
   },
   {
     q: "Warum wurde dieses Tool entwickelt?",
-    a: "Obwohl die Schweiz in Innovationsrankings Spitzenplätze belegt, ist die Förderlandschaft stark fragmentiert und unübersichtlich. Zudem sind viele bestehende Programme historisch auf digitale Geschäftsmodelle (Software) ausgerichtet und vernachlässigen die spezifischen Bedürfnisse von Deep-Tech-Startups, wie etwa lange Entwicklungszyklen, hohe Kapitalintensität und komplexe Skalierungsanforderungen bei Hardware. Der Radar soll diese Orientierungslücke schliessen.",
+    a: "Die Schweiz belegt in internationalen Innovationsrankings regelmässig Spitzenplätze – doch die Förderlandschaft selbst ist fragmentiert und für Gründerinnen und Gründer oft schwer zu durchschauen. Gerade Deep-Tech-Startups sind in ihren frühen Phasen auf gezielte Unterstützung angewiesen, sei es finanzieller, technologischer oder strategischer Natur. Tatsächlich existieren bereits mehr Angebote, als vielen Teams bewusst ist; sie bleiben jedoch häufig ungenutzt, weil sie schlicht nicht sichtbar sind. Genau hier setzt der Radar an: Er schafft Transparenz über bestehende Förder- und Unterstützungsangebote und möchte damit einen Beitrag leisten, eine zentrale Orientierungslücke im Schweizer Deep-Tech-Ökosystem zu schliessen.",
   },
   {
     q: "Wer hat den Radar erstellt?",
