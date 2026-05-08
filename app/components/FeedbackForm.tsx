@@ -33,15 +33,8 @@ export default function FeedbackForm() {
     e.preventDefault();
     setFormState("loading");
 
-    const formspreeEndpoint = process.env.NEXT_PUBLIC_FORMSPREE_FORM_ID
-      ? `https://formspree.io/f/${process.env.NEXT_PUBLIC_FORMSPREE_FORM_ID}`
-      : null;
-
-    if (!formspreeEndpoint) {
-      await new Promise((r) => setTimeout(r, 1000));
-      setFormState("success");
-      return;
-    }
+    const formspreeEndpoint =
+      `https://formspree.io/f/${process.env.NEXT_PUBLIC_FORMSPREE_FORM_ID ?? "xnjwgqjg"}`;
 
     try {
       const res = await fetch(formspreeEndpoint, {
