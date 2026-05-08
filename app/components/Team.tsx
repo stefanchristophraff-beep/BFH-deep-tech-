@@ -63,8 +63,8 @@ export default function Team() {
           </h2>
           <p className="text-lg" style={{ color: "var(--bfh-blue)" }}>
             {lang === "de"
-              ? "Die Personen hinter dem Startup Support Radar"
-              : "The people behind the Startup Support Radar"}
+              ? "Die Personen hinter dem Deep-Tech Startup Radar"
+              : "The people behind the Deep-Tech Startup Radar"}
           </p>
         </div>
 
@@ -163,7 +163,7 @@ export default function Team() {
           </div>
           <div className="hidden sm:block w-px h-12" style={{ backgroundColor: "var(--bfh-border)" }} />
           <p className="text-sm text-center sm:text-left max-w-md" style={{ color: "var(--bfh-body)" }}>
-            Der Startup Radar wurde im Rahmen einer Masterthesis strukturiert entwickelt und unterstützt Gründerinnen und Gründer beim
+            Der Deep-Tech Startup Radar wurde im Rahmen einer Masterthesis strukturiert entwickelt und unterstützt Gründerinnen und Gründer beim
             Navigieren des Schweizer Startup-Ökosystems.
           </p>
         </div>
