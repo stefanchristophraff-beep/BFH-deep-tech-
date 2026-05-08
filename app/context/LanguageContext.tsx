@@ -29,8 +29,8 @@ const translations: Record<Language, Record<string, string>> = {
     "hero.stat1.label": "kartierte Support-Angebote in der Schweiz",
     "hero.stat2.value": "13",
     "hero.stat2.label": "Support-Dimensionen – von Coaching bis Funding",
-    "hero.stat3.value": "Living",
-    "hero.stat3.label": "Database – wird laufend weiterentwickelt",
+    "hero.stat3.value": "Living Database",
+    "hero.stat3.label": "wird laufend weiterentwickelt",
 
     // About
     "about.title": "Was ist der Startup Radar?",
@@ -119,8 +119,8 @@ const translations: Record<Language, Record<string, string>> = {
     "hero.stat1.label": "mapped support offers in Switzerland",
     "hero.stat2.value": "13",
     "hero.stat2.label": "support dimensions – from coaching to funding",
-    "hero.stat3.value": "Living",
-    "hero.stat3.label": "Database – continuously updated",
+    "hero.stat3.value": "Living Database",
+    "hero.stat3.label": "continuously updated",
 
     // About
     "about.title": "What is the Startup Radar?",
