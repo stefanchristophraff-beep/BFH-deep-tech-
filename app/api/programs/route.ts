@@ -78,7 +78,7 @@ export async function GET() {
       targetGroup: toString(r.fields["Target Group"]),
       cluster: toString(r.fields["Cluster"]),
       phase: toString(r.fields["Phase"]),
-      deeptechSpecific: false,
+      deeptechSpecific: Boolean(r.fields["Deep-Tech Specific"] ?? r.fields["Deep Tech Specific"] ?? r.fields["Deeptech Specific"] ?? r.fields["Deep-tech specific"]),
       accessibleToAllFounders: Boolean(r.fields["Accessible to all founders"]),
       hyperlink: toString(r.fields["Hyperlink"]),
       remarks: toString(r.fields["Remarks"] ?? ""),
