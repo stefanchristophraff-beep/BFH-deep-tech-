@@ -152,16 +152,16 @@ export default function Hero() {
           { name: "Genf",     x:  40, y: 462 },
         ].map(({ name, x, y }) => (
           <g key={name}>
-            <circle cx={x} cy={y} r="6" fill="white" opacity="0.9" />
-            <circle cx={x} cy={y} r="12" fill="none" stroke="white" strokeWidth="1.5" opacity="0.4" />
+            <circle cx={x} cy={y} r="4" fill="white" opacity="0.8" />
+            <circle cx={x} cy={y} r="9" fill="none" stroke="white" strokeWidth="1" opacity="0.25" />
             <text
-              x={x + 16}
-              y={y + 5}
+              x={x + 11}
+              y={y + 4}
               fill="white"
-              fontSize="22"
+              fontSize="14"
               fontFamily="Arial, sans-serif"
-              fontWeight="600"
-              opacity="0.7"
+              fontWeight="400"
+              opacity="0.35"
             >
               {name}
             </text>
