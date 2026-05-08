@@ -15,8 +15,8 @@ export default function Home() {
         <Hero />
         <About />
         <RadarSection />
-        <FAQ />
         <FeedbackForm />
+        <FAQ />
         <Team />
       </main>
       <Footer />
