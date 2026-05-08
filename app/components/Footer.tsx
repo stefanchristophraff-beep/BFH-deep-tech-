@@ -20,7 +20,7 @@ export default function Footer() {
                   className="font-900 text-sm"
                   style={{ color: "var(--bfh-yellow)" }}
                 >
-                  IDTM
+                  BFH
                 </span>
               </div>
               <span className="font-700 text-white text-sm">Deep Tech Radar</span>
