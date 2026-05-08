@@ -169,19 +169,10 @@ export default function Hero() {
             {t("hero.badge")} — Living Database
           </div>
 
-          <div className="flex items-center gap-4 mb-2">
+          <div className="mb-2">
             <h1 className="leading-tight text-white text-5xl sm:text-6xl lg:text-7xl" style={{ fontWeight: 900 }}>
               {t("hero.title")}
             </h1>
-            <svg
-              viewBox="0 0 32 32"
-              aria-label="Schweizer Flagge"
-              className="shrink-0 w-24 h-24 sm:w-32 sm:h-32 lg:w-40 lg:h-40"
-            >
-              <rect width="32" height="32" fill="#FF0000" />
-              <rect x="6" y="13" width="20" height="6" fill="#FFFFFF" />
-              <rect x="13" y="6" width="6" height="20" fill="#FFFFFF" />
-            </svg>
           </div>
           <p className="text-xl sm:text-2xl lg:text-3xl mb-6" style={{ color: "rgba(255,255,255,0.85)", fontWeight: 400 }}>
             {lang === "de" ? "Finde" : "Find"}{" "}
