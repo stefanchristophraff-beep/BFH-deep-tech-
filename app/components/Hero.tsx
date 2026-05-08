@@ -3,40 +3,32 @@
 import { useEffect, useState } from "react";
 import { useLanguage } from "@/app/context/LanguageContext";
 
-const TYPEWRITER_TERMS_DE = [
-  "Accelerator & Incubation Programs",
-  "Co-Founder Matchmaking & Talent Access",
+const TYPEWRITER_TERMS = [
+  "Co-Founder",
   "Coaching",
   "Funding",
-  "Infrastructure & Labs",
+  "Infrastructure Labs",
   "Investor Access",
-  "Market & Industry Access",
+  "Market Access",
+  "Industry Access",
   "Mentoring",
-  "Network & Ecosystem",
+  "Network",
   "Start-up Camps",
   "Strategic Partnerships",
-  "Trade Fair Support",
   "Training",
 ];
 
-const TYPEWRITER_TERMS_EN = [
-  "Accelerator & Incubation Programs",
-  "Co-Founder Matchmaking & Talent Access",
-  "Coaching",
-  "Funding",
-  "Infrastructure & Labs",
-  "Investor Access",
-  "Market & Industry Access",
-  "Mentoring",
-  "Network & Ecosystem",
-  "Start-up Camps",
-  "Strategic Partnerships",
-  "Trade Fair Support",
-  "Training",
-];
+function shuffle<T>(arr: T[]): T[] {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
 
-function TypewriterText({ lang }: { lang: string }) {
-  const terms = lang === "de" ? TYPEWRITER_TERMS_DE : TYPEWRITER_TERMS_EN;
+function TypewriterText({ lang: _lang }: { lang: string }) {
+  const [terms] = useState(() => shuffle(TYPEWRITER_TERMS));
   const [termIndex, setTermIndex] = useState(0);
   const [displayed, setDisplayed] = useState("");
   const [deleting, setDeleting] = useState(false);
