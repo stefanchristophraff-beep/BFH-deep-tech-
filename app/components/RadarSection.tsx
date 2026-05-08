@@ -374,6 +374,11 @@ export default function RadarSection() {
   );
 }
 
+// Map program names to a specific logo domain when the hyperlink domain differs
+const LOGO_DOMAIN_OVERRIDES: Record<string, string> = {
+  "Smart Up": "hslu.ch",
+};
+
 function getLogoDomain(hyperlink: string): string | null {
   try {
     return new URL(hyperlink).hostname.replace(/^www\./, "");
@@ -382,8 +387,8 @@ function getLogoDomain(hyperlink: string): string | null {
   }
 }
 
-function OrgLogo({ hyperlink, name }: { hyperlink: string; name: string }) {
-  const domain = getLogoDomain(hyperlink);
+function OrgLogo({ hyperlink, name, programName }: { hyperlink: string; name: string; programName: string }) {
+  const domain = LOGO_DOMAIN_OVERRIDES[programName] ?? getLogoDomain(hyperlink);
 
   if (!domain) {
     return (
@@ -433,7 +438,7 @@ function ProgramCard({
         {/* Header */}
         <div className="flex items-start gap-3 mb-3">
           {program.hyperlink && (
-            <OrgLogo hyperlink={program.hyperlink} name={program.organization || program.name} />
+            <OrgLogo hyperlink={program.hyperlink} name={program.organization || program.name} programName={program.name} />
           )}
           <div className="min-w-0">
             <h3
