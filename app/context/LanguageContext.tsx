@@ -20,7 +20,7 @@ const translations: Record<Language, Record<string, string>> = {
 
     // Hero
     "hero.badge": "Beta",
-    "hero.title": "Deep Tech Startup Radar Schweiz",
+    "hero.title": "Deep-Tech Startup Radar Schweiz",
     "hero.subtitle":
       "Alle Förderprogramme, Acceleratoren und Support-Angebote für Deep Tech Startups in der Schweiz – durchsuchbar, aktuell und kuratiert.",
     "hero.cta.primary": "Radar erkunden",
@@ -110,7 +110,7 @@ const translations: Record<Language, Record<string, string>> = {
 
     // Hero
     "hero.badge": "Beta",
-    "hero.title": "Deep Tech Startup Radar Switzerland",
+    "hero.title": "Deep-Tech Startup Radar Switzerland",
     "hero.subtitle":
       "All funding programs, accelerators and support offers for deep tech startups in Switzerland – searchable, current and curated.",
     "hero.cta.primary": "Explore Radar",
