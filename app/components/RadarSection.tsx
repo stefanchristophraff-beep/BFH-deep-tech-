@@ -374,6 +374,42 @@ export default function RadarSection() {
   );
 }
 
+function getLogoDomain(hyperlink: string): string | null {
+  try {
+    return new URL(hyperlink).hostname.replace(/^www\./, "");
+  } catch {
+    return null;
+  }
+}
+
+function OrgLogo({ hyperlink, name }: { hyperlink: string; name: string }) {
+  const [failed, setFailed] = useState(false);
+  const domain = getLogoDomain(hyperlink);
+
+  if (!domain || failed) {
+    return (
+      <div
+        className="w-8 h-8 rounded flex items-center justify-center shrink-0 text-xs font-700"
+        style={{ backgroundColor: "var(--bfh-surface)", color: "var(--bfh-muted)", border: "1px solid var(--bfh-border)" }}
+      >
+        {name.slice(0, 2).toUpperCase()}
+      </div>
+    );
+  }
+
+  return (
+    <img
+      src={`https://logo.clearbit.com/${domain}`}
+      alt={name}
+      width={32}
+      height={32}
+      className="w-8 h-8 rounded object-contain shrink-0"
+      style={{ border: "1px solid var(--bfh-border)", backgroundColor: "#fff" }}
+      onError={() => setFailed(true)}
+    />
+  );
+}
+
 function ProgramCard({
   program,
   lang,
@@ -397,18 +433,23 @@ function ProgramCard({
     >
       <div className="p-5 flex flex-col flex-1">
         {/* Header */}
-        <div className="mb-3">
-          <h3
-            className="font-700 text-base leading-snug transition-colors"
-            style={{ color: "var(--bfh-dark)" }}
-          >
-            {program.name}
-          </h3>
-          {program.organization && (
-            <p className="text-sm mt-0.5" style={{ color: "var(--bfh-muted)" }}>
-              {program.organization}
-            </p>
+        <div className="flex items-start gap-3 mb-3">
+          {program.hyperlink && (
+            <OrgLogo hyperlink={program.hyperlink} name={program.organization || program.name} />
           )}
+          <div className="min-w-0">
+            <h3
+              className="font-700 text-base leading-snug transition-colors"
+              style={{ color: "var(--bfh-dark)" }}
+            >
+              {program.name}
+            </h3>
+            {program.organization && (
+              <p className="text-sm mt-0.5" style={{ color: "var(--bfh-muted)" }}>
+                {program.organization}
+              </p>
+            )}
+          </div>
         </div>
 
         {/* Badges */}
