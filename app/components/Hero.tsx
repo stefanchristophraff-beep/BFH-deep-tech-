@@ -80,6 +80,19 @@ export default function Hero() {
         />
       </svg>
 
+      {/* Swiss flag — placed on the map area (right side) */}
+      <div
+        className="absolute hidden lg:block"
+        style={{ right: "14%", top: "38%", filter: "drop-shadow(0 2px 8px rgba(0,0,0,0.4))" }}
+        aria-label="Schweizer Flagge"
+      >
+        <svg width="52" height="52" viewBox="0 0 20 20">
+          <rect width="20" height="20" fill="#FF0000" />
+          <rect x="8.5" y="3" width="3" height="14" fill="#FFFFFF" />
+          <rect x="3" y="8.5" width="14" height="3" fill="#FFFFFF" />
+        </svg>
+      </div>
+
       {/* Yellow left accent line */}
       <div
         className="absolute left-0 top-0 bottom-0 w-1"
