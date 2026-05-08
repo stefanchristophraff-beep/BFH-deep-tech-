@@ -107,8 +107,8 @@ export default function Hero() {
           <h1 className="flex items-center gap-4 text-4xl sm:text-5xl lg:text-6xl font-900 leading-tight mb-6 text-white">
             <span>{t("hero.title")}</span>
             <svg
-              width="40"
-              height="40"
+              width="120"
+              height="120"
               viewBox="0 0 32 32"
               aria-label="Schweizer Flagge"
               className="shrink-0"
