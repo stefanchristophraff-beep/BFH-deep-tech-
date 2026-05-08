@@ -19,6 +19,7 @@ const MEMBERS = [
     img: "/stefanbild.jpg",
     initials: "SR",
     email: "stefan.raff@bfh.ch",
+    scholar: "https://scholar.google.co.il/citations?user=g2lrPqQAAAAJ&hl=de",
   },
 ];
 
@@ -106,6 +107,22 @@ export default function Team() {
                       style={{ color: "var(--bfh-blue)" }}
                     >
                       {m.email}
+                    </a>
+                  </div>
+                )}
+                {"scholar" in m && m.scholar && (
+                  <div className="mt-2">
+                    <a
+                      href={m.scholar}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 text-xs font-600 transition-colors"
+                      style={{ color: "var(--bfh-blue)" }}
+                    >
+                      <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-24L0 9.5l4.838 3.94A8 8 0 0 1 12 9a8 8 0 0 1 7.162 4.44L24 9.5z"/>
+                      </svg>
+                      Google Scholar
                     </a>
                   </div>
                 )}
