@@ -1,6 +1,62 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { useLanguage } from "@/app/context/LanguageContext";
+
+const TYPEWRITER_TERMS = [
+  "Accelerator & Incubation Programs",
+  "Co-Founder Matchmaking & Talent Access",
+  "Coaching",
+  "Funding",
+  "Infrastructure & Labs",
+  "Investor Access",
+  "Market & Industry Access",
+  "Mentoring",
+  "Network & Ecosystem",
+  "Start-up Camps",
+  "Strategic Partnerships",
+  "Trade Fair Support",
+  "Training",
+];
+
+function TypewriterText() {
+  const [termIndex, setTermIndex] = useState(0);
+  const [displayed, setDisplayed] = useState("");
+  const [deleting, setDeleting] = useState(false);
+
+  useEffect(() => {
+    const term = TYPEWRITER_TERMS[termIndex];
+
+    if (!deleting && displayed.length < term.length) {
+      const t = setTimeout(() => setDisplayed(term.slice(0, displayed.length + 1)), 55);
+      return () => clearTimeout(t);
+    }
+    if (!deleting && displayed.length === term.length) {
+      const t = setTimeout(() => setDeleting(true), 2000);
+      return () => clearTimeout(t);
+    }
+    if (deleting && displayed.length > 0) {
+      const t = setTimeout(() => setDisplayed(displayed.slice(0, -1)), 30);
+      return () => clearTimeout(t);
+    }
+    if (deleting && displayed.length === 0) {
+      setDeleting(false);
+      setTermIndex((i) => (i + 1) % TYPEWRITER_TERMS.length);
+    }
+  }, [displayed, deleting, termIndex]);
+
+  return (
+    <span>
+      <span className="font-900" style={{ color: "var(--bfh-yellow)" }}>
+        {displayed}
+      </span>
+      <span
+        className="inline-block w-0.5 h-[1em] ml-1 align-middle animate-pulse"
+        style={{ backgroundColor: "var(--bfh-yellow)" }}
+      />
+    </span>
+  );
+}
 
 /**
  * Switzerland border — clockwise from NW Jura.
@@ -104,19 +160,24 @@ export default function Hero() {
             {t("hero.badge")} — Living Database
           </div>
 
-          <h1 className="flex items-center gap-4 text-4xl sm:text-5xl lg:text-6xl font-900 leading-tight mb-6 text-white">
-            <span>{t("hero.title")}</span>
-            <svg
-              width="120"
-              height="120"
-              viewBox="0 0 32 32"
-              aria-label="Schweizer Flagge"
-              className="shrink-0 ml-2"
-            >
-              <rect width="32" height="32" fill="#FF0000" />
-              <rect x="6" y="13" width="20" height="6" fill="#FFFFFF" />
-              <rect x="13" y="6" width="6" height="20" fill="#FFFFFF" />
-            </svg>
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-900 leading-tight mb-6 text-white">
+            <span className="flex items-center gap-2 flex-wrap">
+              <span>{t("hero.title")}</span>
+              <svg
+                width="64"
+                height="64"
+                viewBox="0 0 32 32"
+                aria-label="Schweizer Flagge"
+                className="shrink-0"
+              >
+                <rect width="32" height="32" fill="#FF0000" />
+                <rect x="6" y="13" width="20" height="6" fill="#FFFFFF" />
+                <rect x="13" y="6" width="6" height="20" fill="#FFFFFF" />
+              </svg>
+            </span>
+            <span className="block mt-2 text-2xl sm:text-3xl lg:text-4xl font-700" style={{ color: "rgba(255,255,255,0.85)" }}>
+              Finde <TypewriterText /> für dein Deep-Tech Startup
+            </span>
           </h1>
 
           <p
