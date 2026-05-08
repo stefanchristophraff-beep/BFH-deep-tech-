@@ -78,17 +78,6 @@ export default function Hero() {
           strokeLinejoin="miter"
           strokeLinecap="square"
         />
-        {/* Swiss flag centered inside the outline — official cross proportions (6/32 arm width, 20/32 arm length) */}
-        <g transform="translate(436, 188)" opacity="0.85" filter="url(#flagShadow)">
-          <defs>
-            <filter id="flagShadow" x="-20%" y="-20%" width="140%" height="140%">
-              <feDropShadow dx="0" dy="2" stdDeviation="4" floodColor="#000" floodOpacity="0.45" />
-            </filter>
-          </defs>
-          <rect width="100" height="100" fill="#FF0000" />
-          <rect x="19" y="38" width="62" height="24" fill="#FFFFFF" />
-          <rect x="38" y="19" width="24" height="62" fill="#FFFFFF" />
-        </g>
       </svg>
 
       {/* Yellow left accent line */}
@@ -115,8 +104,19 @@ export default function Hero() {
             {t("hero.badge")} — Living Database
           </div>
 
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-900 leading-tight mb-6 text-white">
+          <h1 className="flex items-center gap-4 text-4xl sm:text-5xl lg:text-6xl font-900 leading-tight mb-6 text-white">
             {t("hero.title")}
+            <svg
+              width="52"
+              height="52"
+              viewBox="0 0 32 32"
+              aria-label="Schweizer Flagge"
+              className="shrink-0 inline-block"
+            >
+              <rect width="32" height="32" fill="#FF0000" />
+              <rect x="6" y="13" width="20" height="6" fill="#FFFFFF" />
+              <rect x="13" y="6" width="6" height="20" fill="#FFFFFF" />
+            </svg>
           </h1>
 
           <p
