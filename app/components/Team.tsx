@@ -150,9 +150,15 @@ export default function Team() {
               </span>
             </div>
             <div>
-              <div className="font-700" style={{ color: "var(--bfh-dark)" }}>
+              <a
+                href="https://www.bfh.ch/de/forschung/forschungsbereiche/digital-technology-management/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-700 hover:underline"
+                style={{ color: "var(--bfh-navy)" }}
+              >
                 Institute for Digital Technology Management
-              </div>
+              </a>
             </div>
           </div>
           <div className="hidden sm:block w-px h-12" style={{ backgroundColor: "var(--bfh-border)" }} />

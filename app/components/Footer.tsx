@@ -60,8 +60,16 @@ export default function Footer() {
           }}
         >
           <p>
-            © {new Date().getFullYear()} Institute for Digital Technology Management — Deep Tech Radar.{" "}
-            {t("footer.rights")}
+            © {new Date().getFullYear()}{" "}
+            <a
+              href="https://www.bfh.ch/de/forschung/forschungsbereiche/digital-technology-management/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white transition-colors"
+            >
+              Institute for Digital Technology Management
+            </a>{" "}
+            — Deep Tech Radar. {t("footer.rights")}
           </p>
           <div className="flex items-center gap-2">
             <span
