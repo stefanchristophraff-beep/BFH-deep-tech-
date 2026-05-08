@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useLanguage } from "@/app/context/LanguageContext";
 
-const TYPEWRITER_TERMS = [
+const TYPEWRITER_TERMS_DE = [
   "Accelerator & Incubation Programs",
   "Co-Founder Matchmaking & Talent Access",
   "Coaching",
@@ -19,13 +19,30 @@ const TYPEWRITER_TERMS = [
   "Training",
 ];
 
-function TypewriterText() {
+const TYPEWRITER_TERMS_EN = [
+  "Accelerator & Incubation Programs",
+  "Co-Founder Matchmaking & Talent Access",
+  "Coaching",
+  "Funding",
+  "Infrastructure & Labs",
+  "Investor Access",
+  "Market & Industry Access",
+  "Mentoring",
+  "Network & Ecosystem",
+  "Start-up Camps",
+  "Strategic Partnerships",
+  "Trade Fair Support",
+  "Training",
+];
+
+function TypewriterText({ lang }: { lang: string }) {
+  const terms = lang === "de" ? TYPEWRITER_TERMS_DE : TYPEWRITER_TERMS_EN;
   const [termIndex, setTermIndex] = useState(0);
   const [displayed, setDisplayed] = useState("");
   const [deleting, setDeleting] = useState(false);
 
   useEffect(() => {
-    const term = TYPEWRITER_TERMS[termIndex];
+    const term = terms[termIndex];
 
     if (!deleting && displayed.length < term.length) {
       const t = setTimeout(() => setDisplayed(term.slice(0, displayed.length + 1)), 55);
@@ -41,13 +58,13 @@ function TypewriterText() {
     }
     if (deleting && displayed.length === 0) {
       setDeleting(false);
-      setTermIndex((i) => (i + 1) % TYPEWRITER_TERMS.length);
+      setTermIndex((i) => (i + 1) % terms.length);
     }
-  }, [displayed, deleting, termIndex]);
+  }, [displayed, deleting, termIndex, terms]);
 
   return (
     <span>
-      <span className="font-900" style={{ color: "var(--bfh-yellow)" }}>
+      <span style={{ color: "var(--bfh-yellow)", fontWeight: 900 }}>
         {displayed}
       </span>
       <span
@@ -107,7 +124,7 @@ const CH_PATH = `
 `.trim();
 
 export default function Hero() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
 
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
@@ -160,12 +177,12 @@ export default function Hero() {
             {t("hero.badge")} — Living Database
           </div>
 
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-900 leading-tight mb-6 text-white">
-            <span className="flex items-center gap-2 flex-wrap">
+          <h1 className="leading-tight mb-4 text-white">
+            <span className="flex items-center gap-3 text-5xl sm:text-6xl lg:text-7xl" style={{ fontWeight: 900 }}>
               <span>{t("hero.title")}</span>
               <svg
-                width="64"
-                height="64"
+                width="56"
+                height="56"
                 viewBox="0 0 32 32"
                 aria-label="Schweizer Flagge"
                 className="shrink-0"
@@ -175,10 +192,12 @@ export default function Hero() {
                 <rect x="13" y="6" width="6" height="20" fill="#FFFFFF" />
               </svg>
             </span>
-            <span className="block mt-2 text-2xl sm:text-3xl lg:text-4xl font-700" style={{ color: "rgba(255,255,255,0.85)" }}>
-              Finde <TypewriterText /> für dein Deep-Tech Startup
-            </span>
           </h1>
+          <p className="text-xl sm:text-2xl lg:text-3xl mb-6" style={{ color: "rgba(255,255,255,0.85)", fontWeight: 400 }}>
+            {lang === "de" ? "Finde" : "Find"}{" "}
+            <TypewriterText lang={lang} />{" "}
+            {lang === "de" ? "für dein Deep-Tech Startup" : "for your Deep-Tech Startup"}
+          </p>
 
           <p
             className="text-lg sm:text-xl leading-relaxed mb-10 max-w-2xl"
