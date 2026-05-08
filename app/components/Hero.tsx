@@ -245,6 +245,34 @@ export default function Hero() {
               </div>
             ))}
           </div>
+
+          {/* Supported by */}
+          <div
+            className="flex flex-wrap items-center gap-6 mt-10 pt-8"
+            style={{ borderTop: "1px solid rgba(255,255,255,0.12)" }}
+          >
+            <span className="text-xs font-600 uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.4)" }}>
+              {lang === "de" ? "Unterstützt durch" : "Supported by"}
+            </span>
+            {[
+              { name: "Berner Fachhochschule", domain: "bfh.ch" },
+              { name: "Innosuisse", domain: "innosuisse.ch" },
+            ].map(({ name, domain }) => (
+              <div key={domain} className="flex items-center gap-2">
+                <img
+                  src={`https://www.google.com/s2/favicons?domain=${domain}&sz=32`}
+                  alt={name}
+                  width={20}
+                  height={20}
+                  className="rounded"
+                  style={{ opacity: 0.85 }}
+                />
+                <span className="text-sm font-600" style={{ color: "rgba(255,255,255,0.7)" }}>
+                  {name}
+                </span>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
