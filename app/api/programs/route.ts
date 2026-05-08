@@ -18,7 +18,7 @@ export interface AirtableProgram {
 
 interface AirtableRecord {
   id: string;
-  fields: Record<string, string | boolean | string[]>;
+  fields: Record<string, unknown>;
 }
 
 function toString(val: unknown): string {
@@ -27,26 +27,20 @@ function toString(val: unknown): string {
   return String(val);
 }
 
+const BASE_ID = "appJn6vW6UO1JSDvd";
+const TABLE_NAME = "Deep-Tech Kommerzialisierungsradar";
+
 export async function GET() {
   const apiKey = process.env.AIRTABLE_API_KEY;
-  const baseId = process.env.AIRTABLE_BASE_ID;
-  const tableName = process.env.AIRTABLE_TABLE_NAME;
 
-  if (!apiKey || !baseId || !tableName) {
+  if (!apiKey) {
     return NextResponse.json(
-      {
-        error: "Missing Airtable configuration",
-        missing: {
-          apiKey: !apiKey,
-          baseId: !baseId,
-          tableName: !tableName,
-        },
-      },
+      { error: "AIRTABLE_API_KEY is not set in environment variables" },
       { status: 500 }
     );
   }
 
-  const url = `https://api.airtable.com/v0/${baseId}/${encodeURIComponent(tableName)}`;
+  const url = `https://api.airtable.com/v0/${BASE_ID}/${encodeURIComponent(TABLE_NAME)}`;
 
   try {
     const records: AirtableRecord[] = [];
@@ -62,16 +56,15 @@ export async function GET() {
       });
 
       if (!res.ok) {
-        const err = await res.text();
-        console.error("Airtable error:", res.status, err);
+        const detail = await res.text();
         return NextResponse.json(
-          { error: "Airtable request failed", status: res.status, detail: err },
+          { error: `Airtable returned ${res.status}`, detail },
           { status: res.status }
         );
       }
 
       const data = await res.json();
-      records.push(...data.records);
+      records.push(...(data.records ?? []));
       offset = data.offset;
     } while (offset);
 
@@ -93,9 +86,8 @@ export async function GET() {
 
     return NextResponse.json(programs);
   } catch (err) {
-    console.error("Fetch error:", err);
     return NextResponse.json(
-      { error: "Internal error", detail: String(err) },
+      { error: "Unexpected error", detail: String(err) },
       { status: 500 }
     );
   }
