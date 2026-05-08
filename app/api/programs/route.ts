@@ -70,18 +70,18 @@ export async function GET() {
 
     const programs: AirtableProgram[] = records.map((r) => ({
       id: r.id,
-      name: toString(r.fields["program name"]),
-      organization: toString(r.fields["organization"]),
-      offerings: toString(r.fields["offerings"]),
-      commercialisationSkills: toString(r.fields["commercialisation skills"]),
-      purpose: toString(r.fields["purpose"]),
-      targetGroup: toString(r.fields["target group"]),
-      cluster: toString(r.fields["cluster"]),
-      phase: toString(r.fields["phase"]),
-      deeptechSpecific: Boolean(r.fields["deeptech specific"]),
-      accessibleToAllFounders: Boolean(r.fields["accessible to all founders"]),
-      hyperlink: toString(r.fields["hyperlink"]),
-      remarks: toString(r.fields["remarks"]),
+      name: toString(r.fields["Program Name"]),
+      organization: toString(r.fields["Organisation"]),
+      offerings: toString(r.fields["Offerings"]),
+      commercialisationSkills: toString(r.fields["Commercialisation Skills"]),
+      purpose: toString(r.fields["Purpose"]),
+      targetGroup: toString(r.fields["Target Group"]),
+      cluster: toString(r.fields["Cluster"]),
+      phase: toString(r.fields["Phase"]),
+      deeptechSpecific: false,
+      accessibleToAllFounders: Boolean(r.fields["Accessible to all founders"]),
+      hyperlink: toString(r.fields["Hyperlink"]),
+      remarks: toString(r.fields["Remarks"] ?? ""),
     }));
 
     return NextResponse.json(programs);
