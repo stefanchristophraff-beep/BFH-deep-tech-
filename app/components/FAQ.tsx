@@ -17,10 +17,6 @@ const FAQ_DE = [
     a: "Das Tool wurde im Rahmen einer Masterthesis an der Berner Fachhochschule (BFH) entwickelt. Das Projekt entstand darüber hinaus in enger Zusammenarbeit mit der Schweizerischen Agentur für Innovationsförderung Innosuisse, die ihr Netzwerk für die empirische Analyse zur Verfügung stellte.",
   },
   {
-    q: 'Was genau wird im Kontext dieses Tools unter „Deep-Tech“ verstanden?',
-    a: "Der Fokus liegt ausschliesslich auf wissenschaftsbasierten Startups mit physischen Produkten oder Anlagen. Rein digitale Startups (z. B. SaaS) sowie der Biotech-Sektor wurden aufgrund ihrer abweichenden Risiko- und Kommerzialisierungsprofile in dieser spezifischen Analyse nicht berücksichtigt.",
-  },
-  {
     q: "Auf welcher Datenbasis beruht der Radar?",
     a: "Für die Erstellung des Radars wurden 169 Schweizer Unterstützungsprogramme systematisch analysiert. Zur Validierung der Ergebnisse wurden zudem acht qualitative Interviews mit Deep-Tech-Gründer:innen, Coaches und Innosuisse-Expert:innen geführt, um die tatsächlichen Bedürfnisse der Praxis mit den bestehenden Angeboten abzugleichen.",
   },
