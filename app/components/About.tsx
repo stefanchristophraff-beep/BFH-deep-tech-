@@ -29,86 +29,88 @@ export default function About() {
   const { t } = useLanguage();
 
   const cards = [
-    {
-      icon: icons.compass,
-      color: "blue",
-      title: t("about.card1.title"),
-      desc: t("about.card1.desc"),
-    },
-    {
-      icon: icons.search,
-      color: "cyan",
-      title: t("about.card2.title"),
-      desc: t("about.card2.desc"),
-    },
-    {
-      icon: icons.refresh,
-      color: "green",
-      title: t("about.card3.title"),
-      desc: t("about.card3.desc"),
-    },
-    {
-      icon: icons.star,
-      color: "purple",
-      title: t("about.card4.title"),
-      desc: t("about.card4.desc"),
-    },
+    { icon: icons.compass, title: t("about.card1.title"), desc: t("about.card1.desc") },
+    { icon: icons.search,  title: t("about.card2.title"), desc: t("about.card2.desc") },
+    { icon: icons.refresh, title: t("about.card3.title"), desc: t("about.card3.desc") },
+    { icon: icons.star,    title: t("about.card4.title"), desc: t("about.card4.desc") },
   ];
 
-  const colorMap: Record<string, string> = {
-    blue: "bg-blue-100 text-blue-600",
-    cyan: "bg-cyan-100 text-cyan-600",
-    green: "bg-green-100 text-green-600",
-    purple: "bg-purple-100 text-purple-600",
-  };
-
   return (
-    <section id="about" className="py-24 bg-gray-50">
+    <section id="about" className="py-24" style={{ backgroundColor: "var(--bfh-surface)" }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-4">
+        <div className="mb-12">
+          <h2
+            className="text-3xl sm:text-4xl font-700 mb-3"
+            style={{ color: "var(--bfh-dark)" }}
+          >
             {t("about.title")}
           </h2>
-          <p className="text-lg text-gray-500 max-w-2xl mx-auto">
+          <p className="text-lg max-w-2xl" style={{ color: "var(--bfh-blue)" }}>
             {t("about.subtitle")}
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {cards.map((card) => (
             <div
               key={card.title}
-              className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-md transition-shadow"
+              className="bg-white p-6 border-t-4 transition-shadow hover:shadow-sm"
+              style={{ borderTopColor: "var(--bfh-yellow)", borderLeft: "1px solid var(--bfh-border)", borderRight: "1px solid var(--bfh-border)", borderBottom: "1px solid var(--bfh-border)" }}
             >
               <div
-                className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 ${colorMap[card.color]}`}
+                className="w-10 h-10 flex items-center justify-center mb-4"
+                style={{ color: "var(--bfh-navy)" }}
               >
                 {card.icon}
               </div>
-              <h3 className="font-bold text-gray-900 mb-2">{card.title}</h3>
-              <p className="text-gray-500 text-sm leading-relaxed">{card.desc}</p>
+              <h3
+                className="font-700 mb-2 text-base"
+                style={{ color: "var(--bfh-dark)" }}
+              >
+                {card.title}
+              </h3>
+              <p className="text-sm leading-relaxed" style={{ color: "var(--bfh-muted)" }}>
+                {card.desc}
+              </p>
             </div>
           ))}
         </div>
 
-        {/* BFH Badge */}
-        <div className="mt-16 flex flex-col sm:flex-row items-center justify-center gap-6 p-8 bg-white rounded-2xl border border-gray-100 shadow-sm">
-          <div className="flex items-center gap-4">
-            <div className="w-14 h-14 bg-gradient-to-br from-blue-600 to-cyan-500 rounded-2xl flex items-center justify-center shrink-0">
-              <span className="text-white font-extrabold text-lg">BFH</span>
+        {/* BFH Banner */}
+        <div
+          className="mt-12 flex flex-col sm:flex-row items-center gap-6 p-8 border-l-4 bg-white"
+          style={{
+            borderLeftColor: "var(--bfh-navy)",
+            borderTop: "1px solid var(--bfh-border)",
+            borderRight: "1px solid var(--bfh-border)",
+            borderBottom: "1px solid var(--bfh-border)",
+          }}
+        >
+          <div className="flex items-center gap-4 shrink-0">
+            <div
+              className="w-14 h-14 flex items-center justify-center rounded-sm"
+              style={{ backgroundColor: "var(--bfh-navy)" }}
+            >
+              <span
+                className="font-900 text-base"
+                style={{ color: "var(--bfh-yellow)" }}
+              >
+                BFH
+              </span>
             </div>
             <div>
-              <div className="font-bold text-gray-900">Berner Fachhochschule</div>
-              <div className="text-sm text-gray-500">
-                School of Engineering & Computer Science
+              <div className="font-700" style={{ color: "var(--bfh-dark)" }}>
+                Berner Fachhochschule
+              </div>
+              <div className="text-sm" style={{ color: "var(--bfh-muted)" }}>
+                School of Engineering &amp; Computer Science
               </div>
             </div>
           </div>
-          <div className="hidden sm:block w-px h-12 bg-gray-200" />
-          <p className="text-gray-500 text-sm text-center sm:text-left max-w-md">
-            Der Startup Radar wird von der BFH entwickelt und unterstützt
-            Gründerinnen und Gründer beim Navigieren des Schweizer
-            Startup-Ökosystems.
+          <div className="hidden sm:block w-px h-12" style={{ backgroundColor: "var(--bfh-border)" }} />
+          <p className="text-sm text-center sm:text-left max-w-md" style={{ color: "var(--bfh-body)" }}>
+            Der Startup Radar wird von der BFH entwickelt und unterstützt Gründerinnen und Gründer beim
+            Navigieren des Schweizer Startup-Ökosystems.
           </p>
         </div>
       </div>

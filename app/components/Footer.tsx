@@ -6,46 +6,68 @@ export default function Footer() {
   const { t } = useLanguage();
 
   return (
-    <footer className="bg-slate-900 text-gray-400 py-12">
+    <footer style={{ backgroundColor: "var(--bfh-navy)", color: "rgba(255,255,255,0.6)" }} className="py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
           {/* Logo + tagline */}
           <div>
-            <div className="flex items-center gap-2 mb-2">
-              <div className="w-7 h-7 bg-gradient-to-br from-blue-500 to-cyan-400 rounded-lg flex items-center justify-center">
-                <svg className="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <circle cx="12" cy="12" r="9" strokeWidth="2" className="opacity-40" />
-                  <circle cx="12" cy="12" r="5" strokeWidth="2" />
-                  <circle cx="12" cy="12" r="1" strokeWidth="2" fill="white" />
-                </svg>
+            <div className="flex items-center gap-3 mb-3">
+              <div
+                className="w-9 h-9 flex items-center justify-center rounded-sm"
+                style={{ backgroundColor: "rgba(255,255,255,0.1)" }}
+              >
+                <span
+                  className="font-900 text-sm"
+                  style={{ color: "var(--bfh-yellow)" }}
+                >
+                  BFH
+                </span>
               </div>
-              <span className="text-white font-bold text-sm">Deep Tech Radar</span>
+              <span className="font-700 text-white text-sm">Deep Tech Radar</span>
             </div>
-            <p className="text-sm text-gray-500 max-w-xs">{t("footer.tagline")}</p>
-            <p className="text-xs text-gray-600 mt-2">{t("footer.beta")}</p>
+            <p className="text-sm max-w-xs" style={{ color: "rgba(255,255,255,0.5)" }}>
+              {t("footer.tagline")}
+            </p>
+            <p className="text-xs mt-2" style={{ color: "rgba(255,255,255,0.3)" }}>
+              {t("footer.beta")}
+            </p>
           </div>
 
           {/* Links */}
           <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm">
-            <a href="#" className="hover:text-white transition-colors">
-              {t("footer.legal")}
-            </a>
-            <a href="#" className="hover:text-white transition-colors">
-              {t("footer.privacy")}
-            </a>
-            <a href="#" className="hover:text-white transition-colors">
-              {t("footer.contact")}
-            </a>
+            {[
+              { label: t("footer.legal"), href: "#" },
+              { label: t("footer.privacy"), href: "#" },
+              { label: t("footer.contact"), href: "#" },
+            ].map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                className="transition-colors hover:text-white"
+                style={{ color: "rgba(255,255,255,0.5)" }}
+              >
+                {link.label}
+              </a>
+            ))}
           </div>
         </div>
 
-        <div className="mt-8 pt-8 border-t border-gray-800 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-gray-600">
+        <div
+          className="mt-8 pt-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs"
+          style={{
+            borderTop: "1px solid rgba(255,255,255,0.1)",
+            color: "rgba(255,255,255,0.3)",
+          }}
+        >
           <p>
             © {new Date().getFullYear()} Berner Fachhochschule — Deep Tech Radar.{" "}
             {t("footer.rights")}
           </p>
           <div className="flex items-center gap-2">
-            <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+            <span
+              className="w-2 h-2 bg-green-400 rounded-full"
+              style={{ opacity: 0.8 }}
+            />
             <span>Beta v0.1</span>
           </div>
         </div>
