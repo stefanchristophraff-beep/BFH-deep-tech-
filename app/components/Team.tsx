@@ -9,14 +9,14 @@ const MEMBERS = [
     name: "Donat Rüttimann",
     role: "Projektkoordinator Start-up & Innovationsprojekte",
     org: "Innosuisse",
-    img: "/team/donat.jpg",
+    img: "/donatbild.jpg",
     initials: "DR",
   },
   {
     name: "Stefan Raff-Heinen",
     role: "Professor",
     org: "Berner Fachhochschule",
-    img: "/team/stefan.jpg",
+    img: "/stefanbild.jpg",
     initials: "SR",
   },
 ];
