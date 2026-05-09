@@ -10,7 +10,7 @@ const sourceSans = Source_Sans_3({
 });
 
 export const metadata: Metadata = {
-  title: "Deep Tech Startup Radar Schweiz",
+  title: "Deep-Tech Startup Radar Schweiz",
   description:
     "Alle Förderprogramme, Acceleratoren und Support-Angebote für Deep Tech Startups in der Schweiz. Eine lebendige Datenbank der BFH.",
   keywords: [
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     "Innosuisse",
   ],
   openGraph: {
-    title: "Deep Tech Startup Radar Schweiz",
+    title: "Deep-Tech Startup Radar Schweiz",
     description:
       "Alle Förderprogramme und Support-Angebote für Deep Tech Startups in der Schweiz.",
     type: "website",

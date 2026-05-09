@@ -21,7 +21,7 @@ export default function Footer() {
                 height={44}
                 className="h-7 w-auto object-contain brightness-0 invert"
               />
-              <span className="font-700 text-white text-sm">Deep Tech Radar</span>
+              <span className="font-700 text-white text-sm">Deep-Tech Radar</span>
             </div>
             <p className="text-sm max-w-xs" style={{ color: "rgba(255,255,255,0.5)" }}>
               {t("footer.tagline")}
@@ -78,7 +78,7 @@ export default function Footer() {
             >
               Institute for Digital Technology Management
             </a>{" "}
-            — Deep Tech Radar. {t("footer.rights")}
+            — Deep-Tech Radar. {t("footer.rights")}
           </p>
           <div className="flex items-center gap-2">
             <span
