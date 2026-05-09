@@ -62,30 +62,38 @@ export default function Footer() {
         </div>
 
         <div
-          className="mt-8 pt-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs"
+          className="mt-8 pt-8 flex flex-col gap-3 text-xs"
           style={{
             borderTop: "1px solid rgba(255,255,255,0.1)",
             color: "rgba(255,255,255,0.3)",
           }}
         >
-          <p>
-            © {new Date().getFullYear()}{" "}
-            <a
-              href="https://www.bfh.ch/de/forschung/forschungsbereiche/digital-technology-management/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-white transition-colors"
-            >
-              Institute for Digital Technology Management
-            </a>{" "}
-            — Deep-Tech Radar. {t("footer.rights")}
+          <p style={{ color: "rgba(255,255,255,0.25)" }}>
+            Institute for Digital Technology Management (IDTM) · Brückenstrasse 73, 3005 Bern ·{" "}
+            <a href="mailto:stefan.raff@bfh.ch" className="hover:text-white transition-colors">
+              stefan.raff@bfh.ch
+            </a>
           </p>
-          <div className="flex items-center gap-2">
-            <span
-              className="w-2 h-2 bg-green-400 rounded-full"
-              style={{ opacity: 0.8 }}
-            />
-            <span>Beta v0.1</span>
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+            <p>
+              © {new Date().getFullYear()}{" "}
+              <a
+                href="https://www.bfh.ch/de/forschung/forschungsbereiche/digital-technology-management/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-white transition-colors"
+              >
+                Institute for Digital Technology Management
+              </a>{" "}
+              — Deep-Tech Radar. {t("footer.rights")}
+            </p>
+            <div className="flex items-center gap-2">
+              <span
+                className="w-2 h-2 bg-green-400 rounded-full"
+                style={{ opacity: 0.8 }}
+              />
+              <span>Beta v0.1</span>
+            </div>
           </div>
         </div>
       </div>
