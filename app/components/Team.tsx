@@ -141,14 +141,13 @@ export default function Team() {
           }}
         >
           <div className="flex items-center gap-4 shrink-0">
-            <div
-              className="w-14 h-14 flex items-center justify-center rounded-sm"
-              style={{ backgroundColor: "var(--bfh-navy)" }}
-            >
-              <span className="font-900 text-base" style={{ color: "var(--bfh-yellow)" }}>
-                IDTM
-              </span>
-            </div>
+            <Image
+              src="/BFH_Logo_C_en_100_RGB.png"
+              alt="BFH – Bern University of Applied Sciences"
+              width={110}
+              height={44}
+              className="h-12 w-auto object-contain"
+            />
             <div>
               <a
                 href="https://www.bfh.ch/de/forschung/forschungsbereiche/digital-technology-management/"
