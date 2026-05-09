@@ -93,7 +93,7 @@ const translations: Record<Language, Record<string, string>> = {
     "feedback.error": "Fehler beim Senden. Bitte versuche es erneut.",
 
     // Footer
-    "footer.tagline": "Die lebendige Karte der Schweizer Deep Tech Förderung.",
+    "footer.tagline": "Die lebendige Karte der Schweizer Deep-Tech Förderung.",
     "footer.legal": "Impressum",
     "footer.privacy": "Datenschutz",
     "footer.contact": "Kontakt",
