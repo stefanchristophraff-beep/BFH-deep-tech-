@@ -13,10 +13,8 @@ export default function Impressum() {
         <div className="space-y-6 text-sm" style={{ color: "var(--bfh-body)" }}>
           <section>
             <h2 className="font-700 mb-2" style={{ color: "var(--bfh-dark)" }}>Verantwortlich für diese Website</h2>
-            <p>Berner Fachhochschule (BFH)<br />
-            Institute for Digital Technology Management (IDTM)<br />
-            Schwarztorstrasse 48<br />
-            3007 Bern<br />
+            <p>Institute for Digital Technology Management (IDTM)<br />
+            Brückenstrasse 73, 3005 Bern<br />
             Schweiz</p>
           </section>
 
