@@ -1,17 +1,20 @@
 "use client";
 
 import Image from "next/image";
+import { useState } from "react";
 import { useLanguage } from "@/app/context/LanguageContext";
 
 export default function Navbar() {
   const { lang, setLang, t } = useLanguage();
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    setMobileOpen(false);
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-[#e2e5ea] overflow-hidden">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-[#e2e5ea]">
       {/* Subtle Swiss flag watermark */}
       <svg
         viewBox="0 0 32 32"
@@ -22,6 +25,7 @@ export default function Navbar() {
         <rect x="6" y="13" width="20" height="6" fill="white" />
         <rect x="13" y="6" width="6" height="20" fill="white" />
       </svg>
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* BFH Logo */}
@@ -44,7 +48,7 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* Nav links */}
+          {/* Desktop nav links */}
           <div className="hidden md:flex items-center gap-8 text-sm font-600 text-[#3d3d3d]">
             <button
               onClick={() => scrollTo("radar")}
@@ -92,28 +96,80 @@ export default function Navbar() {
                 EN
               </button>
             </div>
-            {/* Yellow CTA */}
+
+            {/* Yellow CTA — desktop only */}
             <button
               onClick={() => scrollTo("radar")}
               className="hidden sm:block text-sm font-600 px-4 py-2 rounded transition-colors"
-              style={{
-                backgroundColor: "var(--bfh-yellow)",
-                color: "var(--bfh-dark)",
-              }}
+              style={{ backgroundColor: "var(--bfh-yellow)", color: "var(--bfh-dark)" }}
               onMouseOver={(e) =>
-                ((e.currentTarget as HTMLButtonElement).style.backgroundColor =
-                  "var(--bfh-yellow-hover)")
+                ((e.currentTarget as HTMLButtonElement).style.backgroundColor = "var(--bfh-yellow-hover)")
               }
               onMouseOut={(e) =>
-                ((e.currentTarget as HTMLButtonElement).style.backgroundColor =
-                  "var(--bfh-yellow)")
+                ((e.currentTarget as HTMLButtonElement).style.backgroundColor = "var(--bfh-yellow)")
               }
             >
               {t("nav.cta")}
             </button>
+
+            {/* Hamburger — mobile only */}
+            <button
+              className="md:hidden flex flex-col justify-center items-center w-8 h-8 gap-1.5"
+              onClick={() => setMobileOpen((o) => !o)}
+              aria-label="Menü"
+            >
+              <span
+                className="block w-5 h-0.5 transition-all duration-200"
+                style={{
+                  backgroundColor: "var(--bfh-navy)",
+                  transform: mobileOpen ? "translateY(8px) rotate(45deg)" : "",
+                }}
+              />
+              <span
+                className="block w-5 h-0.5 transition-all duration-200"
+                style={{
+                  backgroundColor: "var(--bfh-navy)",
+                  opacity: mobileOpen ? 0 : 1,
+                }}
+              />
+              <span
+                className="block w-5 h-0.5 transition-all duration-200"
+                style={{
+                  backgroundColor: "var(--bfh-navy)",
+                  transform: mobileOpen ? "translateY(-8px) rotate(-45deg)" : "",
+                }}
+              />
+            </button>
           </div>
         </div>
       </div>
+
+      {/* Mobile menu */}
+      {mobileOpen && (
+        <div className="md:hidden border-t border-[#e2e5ea] bg-white px-4 py-4 flex flex-col gap-1">
+          {[
+            { label: t("nav.radar"), id: "radar" },
+            { label: t("nav.about"), id: "about" },
+            { label: t("nav.feedback"), id: "feedback" },
+          ].map(({ label, id }) => (
+            <button
+              key={id}
+              onClick={() => scrollTo(id)}
+              className="text-left text-sm font-600 px-3 py-3 rounded transition-colors hover:bg-[#f5f7fa]"
+              style={{ color: "var(--bfh-dark)" }}
+            >
+              {label}
+            </button>
+          ))}
+          <button
+            onClick={() => scrollTo("radar")}
+            className="mt-2 text-sm font-600 px-4 py-3 rounded text-center"
+            style={{ backgroundColor: "var(--bfh-yellow)", color: "var(--bfh-dark)" }}
+          >
+            {t("nav.cta")}
+          </button>
+        </div>
+      )}
     </nav>
   );
 }

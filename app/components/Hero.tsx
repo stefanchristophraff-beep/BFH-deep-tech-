@@ -254,22 +254,23 @@ export default function Hero() {
             <span className="text-xs font-700 uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.55)" }}>
               {lang === "de" ? "Unterstützt durch" : "Supported by"}
             </span>
-            {[
-              { name: "Innosuisse", domain: "innosuisse.ch" },
-            ].map(({ name, domain }) => (
-              <div key={domain} className="flex items-center gap-2.5 px-4 py-2 rounded" style={{ backgroundColor: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.15)" }}>
-                <img
-                  src={`https://www.google.com/s2/favicons?domain=${domain}&sz=64`}
-                  alt={name}
-                  width={28}
-                  height={28}
-                  className="rounded"
-                />
-                <span className="text-sm font-700" style={{ color: "rgba(255,255,255,0.9)" }}>
-                  {name}
-                </span>
-              </div>
-            ))}
+            <a
+              href="https://www.innosuisse.ch"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2.5 px-4 py-2 rounded transition-colors"
+              style={{ backgroundColor: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.15)" }}
+            >
+              {/* Innosuisse wordmark icon */}
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <rect width="24" height="24" rx="3" fill="#E2000F"/>
+                <rect x="4" y="10.5" width="16" height="3" fill="white"/>
+                <rect x="10.5" y="4" width="3" height="16" fill="white"/>
+              </svg>
+              <span className="text-sm font-700" style={{ color: "rgba(255,255,255,0.9)" }}>
+                Innosuisse
+              </span>
+            </a>
           </div>
         </div>
       </div>
