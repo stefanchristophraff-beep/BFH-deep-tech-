@@ -15,16 +15,6 @@ export default function Navbar() {
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-[#e2e5ea]">
-      {/* Subtle Swiss flag watermark */}
-      <svg
-        viewBox="0 0 32 32"
-        aria-hidden="true"
-        className="pointer-events-none select-none absolute right-4 top-1/2 -translate-y-1/2 w-8 h-8 opacity-10"
-      >
-        <rect width="32" height="32" fill="var(--bfh-navy)" />
-        <rect x="6" y="13" width="20" height="6" fill="white" />
-        <rect x="13" y="6" width="6" height="20" fill="white" />
-      </svg>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
