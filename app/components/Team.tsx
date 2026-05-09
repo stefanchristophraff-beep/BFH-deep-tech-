@@ -141,13 +141,15 @@ export default function Team() {
           }}
         >
           <div className="flex items-center gap-4 shrink-0">
-            <Image
-              src="/BFH_Logo_C_en_100_RGB.png"
-              alt="BFH – Bern University of Applied Sciences"
-              width={110}
-              height={44}
-              className="h-12 w-auto object-contain"
-            />
+            <a href="https://www.bfh.ch/de/" target="_blank" rel="noopener noreferrer">
+              <Image
+                src="/BFH_Logo_C_en_100_RGB.png"
+                alt="BFH – Bern University of Applied Sciences"
+                width={110}
+                height={44}
+                className="h-12 w-auto object-contain"
+              />
+            </a>
             <div>
               <a
                 href="https://www.bfh.ch/de/forschung/forschungsbereiche/digital-technology-management/"

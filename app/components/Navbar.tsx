@@ -20,14 +20,16 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16">
           {/* BFH Logo */}
           <div className="flex items-center gap-3">
-            <Image
-              src="/BFH_Logo_C_en_100_RGB.png"
-              alt="BFH – Bern University of Applied Sciences"
-              width={120}
-              height={48}
-              className="h-7 w-auto object-contain"
-              priority
-            />
+            <a href="https://www.bfh.ch/de/" target="_blank" rel="noopener noreferrer">
+              <Image
+                src="/BFH_Logo_C_en_100_RGB.png"
+                alt="BFH – Bern University of Applied Sciences"
+                width={120}
+                height={48}
+                className="h-7 w-auto object-contain"
+                priority
+              />
+            </a>
             <div className="leading-tight hidden sm:block">
               <div className="font-700 text-sm text-[#1a1a1a] leading-none">
                 Deep-Tech Startup Radar

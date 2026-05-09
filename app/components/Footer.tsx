@@ -14,13 +14,15 @@ export default function Footer() {
           {/* Logo + tagline */}
           <div>
             <div className="flex items-center gap-3 mb-3">
-              <Image
-                src="/BFH_Logo_C_en_100_RGB.png"
-                alt="BFH – Bern University of Applied Sciences"
-                width={110}
-                height={44}
-                className="h-7 w-auto object-contain brightness-0 invert"
-              />
+              <a href="https://www.bfh.ch/de/" target="_blank" rel="noopener noreferrer">
+                <Image
+                  src="/BFH_Logo_C_en_100_RGB.png"
+                  alt="BFH – Bern University of Applied Sciences"
+                  width={110}
+                  height={44}
+                  className="h-7 w-auto object-contain brightness-0 invert"
+                />
+              </a>
               <span className="font-700 text-white text-sm">Deep-Tech Radar</span>
             </div>
             <p className="text-sm max-w-xs" style={{ color: "rgba(255,255,255,0.5)" }}>
