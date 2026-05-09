@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useLanguage } from "@/app/context/LanguageContext";
 
@@ -13,17 +14,13 @@ export default function Footer() {
           {/* Logo + tagline */}
           <div>
             <div className="flex items-center gap-3 mb-3">
-              <div
-                className="w-9 h-9 flex items-center justify-center rounded-sm"
-                style={{ backgroundColor: "rgba(255,255,255,0.1)" }}
-              >
-                <span
-                  className="font-900 text-sm"
-                  style={{ color: "var(--bfh-yellow)" }}
-                >
-                  IDTM
-                </span>
-              </div>
+              <Image
+                src="/BFH_Logo_C_en_100_RGB.png"
+                alt="BFH – Bern University of Applied Sciences"
+                width={110}
+                height={44}
+                className="h-10 w-auto object-contain brightness-0 invert"
+              />
               <span className="font-700 text-white text-sm">Deep Tech Radar</span>
             </div>
             <p className="text-sm max-w-xs" style={{ color: "rgba(255,255,255,0.5)" }}>

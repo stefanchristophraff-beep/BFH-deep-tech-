@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useLanguage } from "@/app/context/LanguageContext";
 
 export default function Navbar() {
@@ -25,18 +26,15 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16">
           {/* BFH Logo */}
           <div className="flex items-center gap-3">
-            <div
-              className="w-9 h-9 flex items-center justify-center rounded-sm shrink-0"
-              style={{ backgroundColor: "var(--bfh-navy)" }}
-            >
-              <span
-                className="font-black text-sm leading-none tracking-tight"
-                style={{ color: "var(--bfh-yellow)" }}
-              >
-                IDTM
-              </span>
-            </div>
-            <div className="leading-tight">
+            <Image
+              src="/BFH_Logo_C_en_100_RGB.png"
+              alt="BFH – Bern University of Applied Sciences"
+              width={120}
+              height={48}
+              className="h-10 w-auto object-contain"
+              priority
+            />
+            <div className="leading-tight hidden sm:block">
               <div className="font-700 text-sm text-[#1a1a1a] leading-none">
                 Deep-Tech Startup Radar
               </div>
