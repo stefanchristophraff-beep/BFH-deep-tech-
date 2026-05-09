@@ -31,7 +31,7 @@ export default function Navbar() {
               alt="BFH – Bern University of Applied Sciences"
               width={120}
               height={48}
-              className="h-10 w-auto object-contain"
+              className="h-7 w-auto object-contain"
               priority
             />
             <div className="leading-tight hidden sm:block">

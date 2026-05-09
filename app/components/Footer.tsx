@@ -19,7 +19,7 @@ export default function Footer() {
                 alt="BFH – Bern University of Applied Sciences"
                 width={110}
                 height={44}
-                className="h-10 w-auto object-contain brightness-0 invert"
+                className="h-7 w-auto object-contain brightness-0 invert"
               />
               <span className="font-700 text-white text-sm">Deep Tech Radar</span>
             </div>
