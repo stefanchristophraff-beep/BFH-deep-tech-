@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useLanguage } from "@/app/context/LanguageContext";
 
@@ -261,15 +262,13 @@ export default function Hero() {
               className="flex items-center gap-2.5 px-4 py-2 rounded transition-colors"
               style={{ backgroundColor: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.15)" }}
             >
-              {/* Innosuisse wordmark icon */}
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <rect width="24" height="24" rx="3" fill="#E2000F"/>
-                <rect x="4" y="10.5" width="16" height="3" fill="white"/>
-                <rect x="10.5" y="4" width="3" height="16" fill="white"/>
-              </svg>
-              <span className="text-sm font-700" style={{ color: "rgba(255,255,255,0.9)" }}>
-                Innosuisse
-              </span>
+              <Image
+                src="/innosuisse_logo.jpg"
+                alt="Innosuisse"
+                width={80}
+                height={28}
+                className="h-7 w-auto object-contain rounded"
+              />
             </a>
           </div>
         </div>
