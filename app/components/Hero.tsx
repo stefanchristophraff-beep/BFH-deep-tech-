@@ -255,7 +255,6 @@ export default function Hero() {
               {lang === "de" ? "Unterstützt durch" : "Supported by"}
             </span>
             {[
-              { name: "Berner Fachhochschule", domain: "bfh.ch" },
               { name: "Innosuisse", domain: "innosuisse.ch" },
             ].map(({ name, domain }) => (
               <div key={domain} className="flex items-center gap-2.5 px-4 py-2 rounded" style={{ backgroundColor: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.15)" }}>
