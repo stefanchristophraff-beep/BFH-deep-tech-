@@ -158,7 +158,7 @@ export default function Team() {
                 className="font-700 hover:underline"
                 style={{ color: "var(--bfh-navy)" }}
               >
-                {lang === "de" ? "Institut für Digital Technology Management" : "Institute for Digital Technology Management"}
+                {lang === "de" ? "Institut Digital Technology Management" : "Institute for Digital Technology Management"}
               </a>
             </div>
           </div>

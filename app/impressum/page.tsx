@@ -13,7 +13,7 @@ export default function Impressum() {
         <div className="space-y-6 text-sm" style={{ color: "var(--bfh-body)" }}>
           <section>
             <h2 className="font-700 mb-2" style={{ color: "var(--bfh-dark)" }}>Verantwortlich für diese Website</h2>
-            <p>Institut für Digital Technology Management (IDTM)<br />
+            <p>Institut Digital Technology Management (IDTM)<br />
             Brückenstrasse 73, 3005 Bern<br />
             Schweiz</p>
           </section>
