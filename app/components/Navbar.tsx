@@ -35,7 +35,7 @@ export default function Navbar() {
                 Deep-Tech Support Navigator
               </div>
               <div className="text-xs text-[#6b7280] leading-none mt-0.5">
-                Institute for Digital Technology Management
+                {lang === "de" ? "Institut für Digital Technology Management" : "Institute for Digital Technology Management"}
               </div>
             </div>
           </div>

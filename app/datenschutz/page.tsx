@@ -14,7 +14,7 @@ export default function Datenschutz() {
         <div className="space-y-6 text-sm" style={{ color: "var(--bfh-body)" }}>
           <section>
             <h2 className="font-700 mb-2" style={{ color: "var(--bfh-dark)" }}>1. Verantwortliche Stelle</h2>
-            <p>Institute for Digital Technology Management (IDTM)<br />
+            <p>Institut für Digital Technology Management (IDTM)<br />
             Brückenstrasse 73, 3005 Bern<br />
             E-Mail: <a href="mailto:stefan.raff@bfh.ch" style={{ color: "var(--bfh-blue)" }}>stefan.raff@bfh.ch</a></p>
           </section>

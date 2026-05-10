@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useLanguage } from "@/app/context/LanguageContext";
 
 export default function Footer() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
 
   return (
     <footer style={{ backgroundColor: "var(--bfh-navy)", color: "rgba(255,255,255,0.6)" }} className="py-12">
@@ -71,7 +71,7 @@ export default function Footer() {
           }}
         >
           <p style={{ color: "rgba(255,255,255,0.25)" }}>
-            Institute for Digital Technology Management (IDTM) · Brückenstrasse 73, 3005 Bern ·{" "}
+            {lang === "de" ? "Institut für Digital Technology Management (IDTM)" : "Institute for Digital Technology Management (IDTM)"} · Brückenstrasse 73, 3005 Bern ·{" "}
             <a href="mailto:stefan.raff@bfh.ch" className="hover:text-white transition-colors">
               stefan.raff@bfh.ch
             </a>
@@ -85,7 +85,7 @@ export default function Footer() {
                 rel="noopener noreferrer"
                 className="hover:text-white transition-colors"
               >
-                Institute for Digital Technology Management
+                {lang === "de" ? "Institut für Digital Technology Management" : "Institute for Digital Technology Management"}
               </a>{" "}
               — Deep-Tech Support Navigator. {t("footer.rights")}
             </p>
