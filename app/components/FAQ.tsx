@@ -5,8 +5,8 @@ import { useLanguage } from "@/app/context/LanguageContext";
 
 const FAQ_DE = [
   {
-    q: "Was ist der Deep-Tech Startup Radar?",
-    a: "Der Deep-Tech Startup Radar ist ein interaktives Tool, das entwickelt wurde, um die Schweizer Unterstützungslandschaft für Deep-Tech-Startups systematisch zu kartieren und transparent zu machen. Er bietet eine strukturierte Übersicht über Förderangebote und ordnet diese entlang verschiedener Phasen der Unternehmensentwicklung, Angebotstypen und Technologien.",
+    q: "Was ist der Deep-Tech Ecosystem Navigator?",
+    a: "Der Deep-Tech Ecosystem Navigator ist ein interaktives Tool, das entwickelt wurde, um die Schweizer Unterstützungslandschaft für Deep-Tech-Startups systematisch zu kartieren und transparent zu machen. Er bietet eine strukturierte Übersicht über Förderangebote und ordnet diese entlang verschiedener Phasen der Unternehmensentwicklung, Angebotstypen und Technologien.",
   },
   {
     q: "Warum wurde dieses Tool entwickelt?",
@@ -36,8 +36,8 @@ const FAQ_DE = [
 
 const FAQ_EN = [
   {
-    q: "What is the Deep-Tech Startup Radar?",
-    a: "The Deep-Tech Startup Radar is an interactive tool developed to systematically map and make transparent the Swiss support landscape for deep-tech startups. It provides a structured overview of support offerings and organises them along various phases of company development, offering types and technologies.",
+    q: "What is the Deep-Tech Ecosystem Navigator?",
+    a: "The Deep-Tech Ecosystem Navigator is an interactive tool developed to systematically map and make transparent the Swiss support landscape for deep-tech startups. It provides a structured overview of support offerings and organises them along various phases of company development, offering types and technologies.",
   },
   {
     q: "Why was this tool developed?",

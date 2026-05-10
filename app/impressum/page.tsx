@@ -25,7 +25,7 @@ export default function Impressum() {
 
           <section>
             <h2 className="font-700 mb-2" style={{ color: "var(--bfh-dark)" }}>Projektverantwortung</h2>
-            <p>Der Deep-Tech Startup Radar wurde im Rahmen einer Masterthesis an der Berner Fachhochschule entwickelt, in Zusammenarbeit mit Innosuisse – Schweizerische Agentur für Innovationsförderung.</p>
+            <p>Der Deep-Tech Ecosystem Navigator wurde im Rahmen einer Masterthesis an der Berner Fachhochschule entwickelt, in Zusammenarbeit mit Innosuisse – Schweizerische Agentur für Innovationsförderung.</p>
           </section>
 
           <section>

@@ -28,7 +28,7 @@ export default function Datenschutz() {
               <li><strong>Organisation / Startup</strong> – optional, zur besseren Einordnung</li>
               <li><strong>Art des Feedbacks und Nachricht</strong> – zur Verbesserung des Radars</li>
             </ul>
-            <p className="mt-2">Diese Daten werden ausschliesslich zur Bearbeitung Ihres Feedbacks und zur Weiterentwicklung des Deep-Tech Startup Radars verwendet.</p>
+            <p className="mt-2">Diese Daten werden ausschliesslich zur Bearbeitung Ihres Feedbacks und zur Weiterentwicklung des Deep-Tech Ecosystem Navigators verwendet.</p>
           </section>
 
           <section>
