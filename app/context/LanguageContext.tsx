@@ -44,7 +44,7 @@ const translations: Record<Language, Record<string, string>> = {
       "Filtere nach Technologiebereich, Unternehmensphase, Fördertyp und mehr, um die relevantesten Angebote in der Schweiz für dein Startup zu finden.",
     "about.card3.title": "Living Database",
     "about.card3.desc":
-      "Der Radar ist eine Living Database und lebt vom Community-Input. Dein Feedback hilft uns, die Datenbank aktuell und vollständig zu halten. Falls du noch Angebote kennst, gib uns Feedback!",
+      "Der Ecosystem Navigator ist eine Living Database und lebt vom Community-Input. Dein Feedback hilft uns, die Datenbank aktuell und vollständig zu halten. Falls du noch Angebote kennst, gib uns Feedback!",
     "about.card4.title": "Beta-Phase",
     "about.card4.desc":
       "Wir bauen den Radar gemeinsam mit euch. Als Early-Adopter hilfst du uns, das Tool zu verbessern.",
