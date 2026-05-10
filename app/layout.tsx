@@ -10,7 +10,7 @@ const sourceSans = Source_Sans_3({
 });
 
 export const metadata: Metadata = {
-  title: "Deep-Tech Ecosystem Navigator Schweiz",
+  title: "Deep-Tech Support Navigator Schweiz",
   description:
     "Förderprogramme, Acceleratoren und Support-Angebote für Deep-Tech Startups in der Schweiz – durchsuchbar, aktuell und kuratiert.",
   keywords: [
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     "Innosuisse",
   ],
   openGraph: {
-    title: "Deep-Tech Ecosystem Navigator Schweiz",
+    title: "Deep-Tech Support Navigator Schweiz",
     description:
       "Förderprogramme, Acceleratoren und Support-Angebote für Deep-Tech Startups in der Schweiz – durchsuchbar, aktuell und kuratiert.",
     type: "website",

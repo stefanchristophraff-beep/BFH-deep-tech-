@@ -23,7 +23,7 @@ export default function Footer() {
                   className="h-7 w-auto object-contain brightness-0 invert"
                 />
               </a>
-              <span className="font-700 text-white text-sm">Deep-Tech Ecosystem Navigator</span>
+              <span className="font-700 text-white text-sm">Deep-Tech Support Navigator</span>
             </div>
             <p className="text-sm max-w-xs" style={{ color: "rgba(255,255,255,0.5)" }}>
               {t("footer.tagline")}
@@ -87,7 +87,7 @@ export default function Footer() {
               >
                 Institute for Digital Technology Management
               </a>{" "}
-              — Deep-Tech Ecosystem Navigator. {t("footer.rights")}
+              — Deep-Tech Support Navigator. {t("footer.rights")}
             </p>
             <div className="flex items-center gap-2">
               <span

@@ -32,7 +32,7 @@ export default function Navbar() {
             </a>
             <div className="leading-tight hidden sm:block">
               <div className="font-700 text-sm text-[#1a1a1a] leading-none">
-                Deep-Tech Ecosystem Navigator
+                Deep-Tech Support Navigator
               </div>
               <div className="text-xs text-[#6b7280] leading-none mt-0.5">
                 Institute for Digital Technology Management

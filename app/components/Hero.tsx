@@ -173,9 +173,9 @@ export default function Hero() {
           <div className="mb-2">
             <h1 className="leading-tight text-white text-5xl sm:text-6xl lg:text-7xl" style={{ fontWeight: 900 }}>
               {lang === "de" ? (
-                <>Deep-Tech <span style={{ color: "var(--bfh-yellow)" }}>Ecosystem Navigator</span> Schweiz</>
+                <>Deep-Tech <span style={{ color: "var(--bfh-yellow)" }}>Support Navigator</span> Schweiz</>
               ) : (
-                <>Deep-Tech <span style={{ color: "var(--bfh-yellow)" }}>Ecosystem Navigator</span> Switzerland</>
+                <>Deep-Tech <span style={{ color: "var(--bfh-yellow)" }}>Support Navigator</span> Switzerland</>
               )}
             </h1>
           </div>
