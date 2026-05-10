@@ -13,7 +13,7 @@ interface LanguageContextType {
 const translations: Record<Language, Record<string, string>> = {
   de: {
     // Nav
-    "nav.radar": "Radar",
+    "nav.radar": "Navigator",
     "nav.about": "Über uns",
     "nav.feedback": "Feedback",
     "nav.cta": "Zum Navigator",
@@ -71,7 +71,7 @@ const translations: Record<Language, Record<string, string>> = {
     // Feedback
     "feedback.title": "Feedback geben",
     "feedback.subtitle":
-      "Helfe uns, den Radar zu verbessern. Fehlt ein Programm? Sind Informationen veraltet? Wir freuen uns über jeden Hinweis.",
+      "Helfe uns, den Ecosystem Navigator zu verbessern. Fehlt ein Programm? Sind Informationen veraltet? Wir freuen uns über jeden Hinweis.",
     "feedback.name.label": "Name",
     "feedback.name.placeholder": "Dein Name",
     "feedback.email.label": "E-Mail",
@@ -99,21 +99,21 @@ const translations: Record<Language, Record<string, string>> = {
     "footer.contact": "Kontakt",
     "footer.rights": "Alle Rechte vorbehalten.",
     "footer.beta":
-      "Dieser Radar befindet sich in der Beta-Phase. Daten ohne Gewähr.",
+      "Dieser Ecosystem Navigator befindet sich in der Beta-Phase. Daten ohne Gewähr.",
   },
   en: {
     // Nav
-    "nav.radar": "Radar",
+    "nav.radar": "Navigator",
     "nav.about": "About",
     "nav.feedback": "Feedback",
-    "nav.cta": "Open Radar",
+    "nav.cta": "Open Navigator",
 
     // Hero
     "hero.badge": "Beta",
     "hero.title": "Deep-Tech Ecosystem Navigator Switzerland",
     "hero.subtitle":
       "All funding programs, accelerators and support offers for deep tech startups in Switzerland – searchable, current and curated.",
-    "hero.cta.primary": "Explore Radar",
+    "hero.cta.primary": "Explore Ecosystem Navigator",
     "hero.cta.secondary": "Give Feedback",
     "hero.stat1.value": "160+",
     "hero.stat1.label": "mapped support offers in Switzerland",
@@ -134,13 +134,13 @@ const translations: Record<Language, Record<string, string>> = {
       "Filter by technology area, company stage, funding type and more to find the most relevant offers.",
     "about.card3.title": "Living Database",
     "about.card3.desc":
-      "The radar thrives on community input. Your feedback helps us keep the database current and complete.",
+      "The Ecosystem Navigator thrives on community input. Your feedback helps us keep the database current and complete.",
     "about.card4.title": "Beta Phase",
     "about.card4.desc":
-      "We're building the radar together with you. As an early adopter, you help us improve the tool.",
+      "We're building the Ecosystem Navigator together with you. As an early adopter, you help us improve the tool.",
 
     // Radar
-    "radar.title": "Explore Radar",
+    "radar.title": "Explore Ecosystem Navigator",
     "radar.subtitle":
       "Browse all Deep Tech support programs for Swiss startups",
     "radar.search.placeholder": "Search programs or keywords",
