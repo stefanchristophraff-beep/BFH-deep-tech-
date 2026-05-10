@@ -22,7 +22,7 @@ const translations: Record<Language, Record<string, string>> = {
     "hero.badge": "Beta",
     "hero.title": "Deep-Tech Ecosystem Navigator Schweiz",
     "hero.subtitle":
-      "Alle Förderprogramme, Acceleratoren und Support-Angebote für Deep Tech Startups in der Schweiz – durchsuchbar, aktuell und kuratiert.",
+      "Förderprogramme, Acceleratoren und Support-Angebote für Deep-Tech Startups in der Schweiz – durchsuchbar, aktuell und kuratiert.",
     "hero.cta.primary": "Radar erkunden",
     "hero.cta.secondary": "Feedback geben",
     "hero.stat1.value": "160+",

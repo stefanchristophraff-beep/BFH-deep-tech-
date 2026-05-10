@@ -12,7 +12,7 @@ const sourceSans = Source_Sans_3({
 export const metadata: Metadata = {
   title: "Deep-Tech Ecosystem Navigator Schweiz",
   description:
-    "Alle Förderprogramme, Acceleratoren und Support-Angebote für Deep Tech Startups in der Schweiz. Eine lebendige Datenbank der BFH.",
+    "Förderprogramme, Acceleratoren und Support-Angebote für Deep-Tech Startups in der Schweiz – durchsuchbar, aktuell und kuratiert.",
   keywords: [
     "Deep Tech",
     "Startup",
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Deep-Tech Ecosystem Navigator Schweiz",
     description:
-      "Alle Förderprogramme und Support-Angebote für Deep Tech Startups in der Schweiz.",
+      "Förderprogramme, Acceleratoren und Support-Angebote für Deep-Tech Startups in der Schweiz – durchsuchbar, aktuell und kuratiert.",
     type: "website",
   },
 };
