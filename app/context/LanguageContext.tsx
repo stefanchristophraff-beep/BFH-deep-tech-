@@ -182,12 +182,12 @@ const translations: Record<Language, Record<string, string>> = {
     "feedback.error": "Error sending. Please try again.",
 
     // Footer
-    "footer.tagline": "The living map of Swiss Deep Tech funding.",
+    "footer.tagline": "The living repository of Swiss Deep Tech support.",
     "footer.legal": "Legal Notice",
     "footer.privacy": "Privacy Policy",
     "footer.contact": "Contact",
     "footer.rights": "All rights reserved.",
-    "footer.beta": "This radar is in beta. Data without guarantee.",
+    "footer.beta": "This tool is in beta. Data without guarantee.",
   },
 };
 
