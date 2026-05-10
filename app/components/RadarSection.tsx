@@ -192,7 +192,7 @@ export default function RadarSection() {
         activePhases.length === 0 ||
         activePhases.some((ph) => programPhases.includes(ph));
 
-      const programClusters = p.cluster.split(",").map((s) => s.trim());
+      const programClusters = p.cluster.split(" | ").map((s) => s.trim());
       const matchesCluster =
         selectedClusters.length === 0 ||
         selectedClusters.some((c) => programClusters.includes(c));
@@ -571,7 +571,7 @@ function ProgramCard({
               {ph.trim()}
             </span>
           ))}
-          {program.cluster && program.cluster.split(",").slice(0, 2).map((cl) => (
+          {program.cluster && program.cluster.split(" | ").slice(0, 2).map((cl) => (
             <span
               key={cl}
               className="text-xs font-600 px-2 py-0.5"

@@ -27,6 +27,12 @@ function toString(val: unknown): string {
   return String(val);
 }
 
+function toClusterString(val: unknown): string {
+  if (!val) return "";
+  if (Array.isArray(val)) return val.join(" | ");
+  return String(val);
+}
+
 const BASE_ID = "appJn6vW6UO1JSDvd";
 const TABLE_NAME = "tblyKeuT35fpIhBr0";
 
@@ -76,7 +82,7 @@ export async function GET() {
       commercialisationSkills: toString(r.fields["Commercialisation Skills"]),
       purpose: toString(r.fields["Purpose"]),
       targetGroup: toString(r.fields["Target Group"]),
-      cluster: toString(r.fields["Cluster"]),
+      cluster: toClusterString(r.fields["Cluster"]),
       phase: toString(r.fields["Phase"]),
       deeptechSpecific: Boolean(r.fields["Deep-Tech Specific"] ?? r.fields["Deep Tech Specific"] ?? r.fields["Deeptech Specific"] ?? r.fields["Deep-tech specific"]),
       accessibleToAllFounders: Boolean(r.fields["Accessible to all founders"]),
