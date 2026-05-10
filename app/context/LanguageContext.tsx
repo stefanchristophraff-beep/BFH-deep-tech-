@@ -23,7 +23,7 @@ const translations: Record<Language, Record<string, string>> = {
     "hero.title": "Deep-Tech Ecosystem Navigator Schweiz",
     "hero.subtitle":
       "Förderprogramme, Acceleratoren und Support-Angebote für Deep-Tech Startups in der Schweiz – durchsuchbar, aktuell und kuratiert.",
-    "hero.cta.primary": "Radar erkunden",
+    "hero.cta.primary": "Deep-Tech Ecosystem Navigator erkunden",
     "hero.cta.secondary": "Feedback geben",
     "hero.stat1.value": "160+",
     "hero.stat1.label": "kartierte Support-Angebote in der Schweiz",
@@ -50,7 +50,7 @@ const translations: Record<Language, Record<string, string>> = {
       "Wir bauen das Tool gemeinsam mit euch. Als Early-Adopter hilfst du uns, das Tool zu verbessern.",
 
     // Radar
-    "radar.title": "Radar erkunden",
+    "radar.title": "Deep-Tech Ecosystem Navigator erkunden",
     "radar.subtitle":
       "Durchsuche alle Deep-Tech Support Programme für Schweizer Startups",
     "radar.search.placeholder": "Nach Programmen oder Schlagworten suchen",
