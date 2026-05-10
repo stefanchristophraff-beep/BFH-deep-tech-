@@ -16,7 +16,7 @@ const translations: Record<Language, Record<string, string>> = {
     "nav.radar": "Radar",
     "nav.about": "Über uns",
     "nav.feedback": "Feedback",
-    "nav.cta": "Zum Radar",
+    "nav.cta": "Zum Navigator",
 
     // Hero
     "hero.badge": "Beta",
