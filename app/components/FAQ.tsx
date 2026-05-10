@@ -30,7 +30,7 @@ const FAQ_DE = [
   },
   {
     q: "Wie hilft der Support Navigator Gründer:innen konkret?",
-    a: "Gründer:innen können die Web-Applikation nutzen, um gezielt nach Programmen zu suchen, die zu ihrer aktuellen Phase oder ihrem Technologie-Cluster (z. B. Robotics, AI, Quantum) passen. Zudem lässt sich filtern, welche Programme spezifische Kommerzialisierungskompetenzen wie IP-Strategie, Fundraising, Industriezugang oder Supply-Chain-Management fördern.",
+    a: "Gründer:innen können die Web-Applikation nutzen, um gezielt nach Programmen zu suchen, die zu ihrer aktuellen Phase oder ihrem Technologie-Cluster (z. B. Robotics, Quantum, Medtech) passen. Zudem lässt sich filtern, welche Programme spezifische Kommerzialisierungskompetenzen wie IP-Strategie, Fundraising, Industriezugang oder Supply-Chain-Management fördern.",
   },
 ];
 
@@ -61,7 +61,7 @@ const FAQ_EN = [
   },
   {
     q: "How does the Support Navigator concretely help founders?",
-    a: "Founders can use the web application to search specifically for programs that match their current phase or technology cluster (e.g. Robotics, AI, Quantum). It is also possible to filter which programs promote specific commercialisation competencies such as IP strategy, fundraising, industry access or supply chain management.",
+    a: "Founders can use the web application to search specifically for programs that match their current phase or technology cluster (e.g. Robotics, Quantum, Medtech). It is also possible to filter which programs promote specific commercialisation competencies such as IP strategy, fundraising, industry access or supply chain management.",
   },
 ];
 

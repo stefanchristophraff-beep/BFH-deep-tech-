@@ -122,7 +122,41 @@ export default function RadarSection() {
     scrollRef.current?.scrollTo({ top: 0 });
   }, []);
 
-  const clusterOptions = useMemo(() => extractUniqueValues(programs, "cluster"), [programs]);
+  const clusterOptions = [
+    "Advanced Manufacturing",
+    "Aerospace",
+    "Agrotech",
+    "AI",
+    "Bioeconomy",
+    "Bionics",
+    "Biotech",
+    "Blockchain",
+    "Catalysis and sustainable chemistry",
+    "Cleantech",
+    "Construction, Building Management, and smart, circular, and climate-resilient Infrastructure",
+    "Cybersecurity",
+    "Data science",
+    "e-health",
+    "Education",
+    "Energy & Environment",
+    "femtech",
+    "Foodtech",
+    "High Energy Physics Applications",
+    "ICT",
+    "Industry 4.0",
+    "Life Sciences",
+    "Medtech",
+    "micro-manufacturing",
+    "micro-nanotechnologies",
+    "Nanotech",
+    "New Materials",
+    "Photonics",
+    "Quantum",
+    "Regenerative technology",
+    "Robotics",
+    "Semiconductors",
+    "Spacetech",
+  ];
   const skillOptions = useMemo(() => extractUniqueValues(programs, "commercialisationSkills"), [programs]);
   const offeringOptions = useMemo(() => extractUniqueValues(programs, "offerings"), [programs]);
 
