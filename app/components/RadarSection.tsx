@@ -5,9 +5,9 @@ import { useLanguage } from "@/app/context/LanguageContext";
 import type { AirtableProgram } from "@/app/api/programs/route";
 
 const PHASES = [
-  { label: "Early Stage (1-3)", value: "Early Stage (1-3)" },
-  { label: "Mid Stage (4-6)", value: "Mid Stage (4-6)" },
-  { label: "Later Stage (7-9)", value: "Later Stage (7-9)" },
+  { label: "Early Stage (1-3)", value: "TRL&MRL 1-3" },
+  { label: "Mid Stage (4-6)", value: "TRL&MRL 4-6" },
+  { label: "Later Stage (7-9)", value: "TRL&MRL 7-9" },
 ];
 
 function MultiSelectDropdown({
