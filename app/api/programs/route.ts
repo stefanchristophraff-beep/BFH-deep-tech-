@@ -80,7 +80,7 @@ export async function GET() {
       id: r.id,
       name: toString(r.fields["Program Name"]),
       organization: toString(r.fields["Organisation"]),
-      offerings: toString(r.fields["Commercialisation Skills"]),
+      offerings: toString(r.fields["Offerings"]),
       commercialisationSkills: toString(r.fields["Commercialisation Skills"]),
       purpose: toString(r.fields["Purpose"]),
       targetGroup: toString(r.fields["Target Group"]),
