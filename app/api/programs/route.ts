@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 
+export const dynamic = "force-dynamic";
+
 export interface AirtableProgram {
   id: string;
   name: string;
@@ -58,7 +60,7 @@ export async function GET() {
 
       const res = await fetch(`${url}?${params}`, {
         headers: { Authorization: `Bearer ${apiKey}` },
-        next: { revalidate: 3600 },
+        cache: "no-store",
       });
 
       if (!res.ok) {
@@ -78,7 +80,7 @@ export async function GET() {
       id: r.id,
       name: toString(r.fields["Program Name"]),
       organization: toString(r.fields["Organisation"]),
-      offerings: toString(r.fields["Offerings"]),
+      offerings: toString(r.fields["Commercialisation Skills"]),
       commercialisationSkills: toString(r.fields["Commercialisation Skills"]),
       purpose: toString(r.fields["Purpose"]),
       targetGroup: toString(r.fields["Target Group"]),
