@@ -386,7 +386,7 @@ export default function RadarSection() {
               {/* Skills */}
               <div>
                 <p className="text-xs font-700 mb-2 uppercase tracking-wide" style={{ color: "var(--bfh-muted)" }}>
-                  {lang === "de" ? "Vermarktungskompetenzen" : "Commercialisation Skills"}
+                  {lang === "de" ? "Kommerzialisierungskompetenzen" : "Commercialisation Skills"}
                 </p>
                 <MultiSelectDropdown options={skillOptions} selected={selectedSkills} onChange={(v) => { setSelectedSkills(v); resetScroll(); }} placeholder={lang === "de" ? "Kompetenzen auswählen..." : "Select skills..."} />
               </div>
