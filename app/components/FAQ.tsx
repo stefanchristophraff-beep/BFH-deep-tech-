@@ -22,7 +22,7 @@ const FAQ_DE = [
   },
   {
     q: "Welche Rolle spielen TRL und MRL bei der Einordnung?",
-    a: "Die Programme werden im Support Navigator anhand der Technology Readiness Levels (TRL) und Market Readiness Levels (MRL) strukturiert. Dies ermöglicht eine präzise Zuordnung zu den drei Phasen der Venture-Journey. Diese beiden Skalen werden genutzt, um den Reifegrad eines Startups ganzheitlich zu erfassen und die passenden Förderangebote zuzuordnen.\n\nTechnology Readiness Level (TRL): Dieser Standard wurde ursprünglich von der NASA entwickelt und dient heute als global anerkannter Standard zur Bewertung des technologischen Reifegrads. Die Skala reicht von Level 1 (Beobachtung der physikalischen Grundprinzipien) bis Level 9 (erfolgreicher Einsatz des Systems in der realen Umgebung).\n\nMarket Readiness Level (MRL): Dieses Modell misst den Fortschritt bei der Kommerzialisierung und der Anpassung an den Markt. Es beginnt bei Level 1 (Ahnung eines Marktbedürfnisses) und führt bis zu Level 9 (bestätigte Stabilität und Marktwachstum).\n\nDer Deep-Tech Support Navigator orientiert sich dabei an den wissenschaftlich fundierten Skalen von Vik et al. (2021), welche die Reifegrade präzise definieren. Durch die Kombination beider Modelle lässt sich bestimmen, ob ein Startup in die Early Stage (TRL/MRL 1–3), Mid Stage (TRL/MRL 4–6) oder Later Stage (TRL/MRL 7–9) fällt.\n\nDas detaillierte Modell und die Kriterien können Sie im zugrunde liegenden wissenschaftlichen Paper nachlesen: Vik et al. (2021): Balanced readiness level assessment (BRLa): A tool for exploring new and emerging technologies.",
+    a: "Die Programme werden im Support Navigator anhand der Technology Readiness Levels (TRL) und Market Readiness Levels (MRL) strukturiert. Dies ermöglicht eine präzise Zuordnung zu den drei Phasen der Venture-Journey. Diese beiden Skalen werden genutzt, um den Reifegrad eines Startups ganzheitlich zu erfassen und die passenden Förderangebote zuzuordnen.\n\n• Technology Readiness Level (TRL): Dieser Standard wurde ursprünglich von der NASA entwickelt und dient heute als global anerkannter Standard zur Bewertung des technologischen Reifegrads. Die Skala reicht von Level 1 (Beobachtung der physikalischen Grundprinzipien) bis Level 9 (erfolgreicher Einsatz des Systems in der realen Umgebung).\n\n• Market Readiness Level (MRL): Dieses Modell misst den Fortschritt bei der Kommerzialisierung und der Anpassung an den Markt. Es beginnt bei Level 1 (Ahnung eines Marktbedürfnisses) und führt bis zu Level 9 (bestätigte Stabilität und Marktwachstum).\n\nDer Deep-Tech Support Navigator orientiert sich dabei an den wissenschaftlich fundierten Skalen von Vik et al. (2021), welche die Reifegrade präzise definieren. Durch die Kombination beider Modelle lässt sich bestimmen, ob ein Startup in die Early Stage (TRL/MRL 1–3), Mid Stage (TRL/MRL 4–6) oder Later Stage (TRL/MRL 7–9) fällt.\n\nDas detaillierte Modell und die Kriterien können Sie im zugrunde liegenden wissenschaftlichen Paper nachlesen: Vik et al. (2021): Balanced readiness level assessment (BRLa): A tool for exploring new and emerging technologies.",
   },
   {
     q: "Welche Erkenntnisse liefert der Support Navigator über die Schweizer Förderlandschaft?",
@@ -53,7 +53,7 @@ const FAQ_EN = [
   },
   {
     q: "What role do TRL and MRL play in the classification?",
-    a: "The programs in the Support Navigator are structured according to Technology Readiness Levels (TRL) and Market Readiness Levels (MRL). This enables a precise assignment to the three phases of the venture journey. Both scales are used to holistically assess the maturity of a startup and match it with the appropriate support offerings.\n\nTechnology Readiness Level (TRL): Originally developed by NASA, this standard is now a globally recognised benchmark for assessing technological maturity. The scale ranges from Level 1 (observation of basic physical principles) to Level 9 (successful deployment of the system in a real-world environment).\n\nMarket Readiness Level (MRL): This model measures progress in commercialisation and market adaptation. It starts at Level 1 (awareness of a market need) and extends to Level 9 (confirmed market stability and growth).\n\nThe Deep-Tech Support Navigator is based on the scientifically grounded scales of Vik et al. (2021), which precisely define the readiness levels. By combining both models, it can be determined whether a startup falls into the Early Stage (TRL/MRL 1–3), Mid Stage (TRL/MRL 4–6) or Later Stage (TRL/MRL 7–9).\n\nThe detailed model and criteria can be found in the underlying scientific paper: Vik et al. (2021): Balanced readiness level assessment (BRLa): A tool for exploring new and emerging technologies.",
+    a: "The programs in the Support Navigator are structured according to Technology Readiness Levels (TRL) and Market Readiness Levels (MRL). This enables a precise assignment to the three phases of the venture journey. Both scales are used to holistically assess the maturity of a startup and match it with the appropriate support offerings.\n\n• Technology Readiness Level (TRL): Originally developed by NASA, this standard is now a globally recognised benchmark for assessing technological maturity. The scale ranges from Level 1 (observation of basic physical principles) to Level 9 (successful deployment of the system in a real-world environment).\n\n• Market Readiness Level (MRL): This model measures progress in commercialisation and market adaptation. It starts at Level 1 (awareness of a market need) and extends to Level 9 (confirmed market stability and growth).\n\nThe Deep-Tech Support Navigator is based on the scientifically grounded scales of Vik et al. (2021), which precisely define the readiness levels. By combining both models, it can be determined whether a startup falls into the Early Stage (TRL/MRL 1–3), Mid Stage (TRL/MRL 4–6) or Later Stage (TRL/MRL 7–9).\n\nThe detailed model and criteria can be found in the underlying scientific paper: Vik et al. (2021): Balanced readiness level assessment (BRLa): A tool for exploring new and emerging technologies.",
   },
   {
     q: "What insights does the Support Navigator provide about the Swiss funding landscape?",
@@ -90,11 +90,53 @@ function FAQItem({ q, a }: { q: string; a: string }) {
       </button>
       {open && (
         <div className="pb-5">
-          {a.split("\n\n").map((block, i) => (
-            <p key={i} className="text-sm leading-relaxed mb-2 last:mb-0 whitespace-pre-line" style={{ color: "var(--bfh-body)" }}>
-              {block}
-            </p>
-          ))}
+          {(() => {
+            const blocks = a.split("\n\n");
+            const elements: React.ReactNode[] = [];
+            let bulletBuffer: string[] = [];
+
+            const flushBullets = (key: string) => {
+              if (bulletBuffer.length === 0) return;
+              elements.push(
+                <ul key={key} className="list-disc pl-5 mb-2 space-y-1">
+                  {bulletBuffer.map((item, j) => {
+                    const colonIdx = item.indexOf(":");
+                    if (colonIdx !== -1) {
+                      const label = item.slice(0, colonIdx);
+                      const rest = item.slice(colonIdx + 1);
+                      return (
+                        <li key={j} className="text-sm leading-relaxed" style={{ color: "var(--bfh-body)" }}>
+                          <strong>{label}</strong>:{rest}
+                        </li>
+                      );
+                    }
+                    return (
+                      <li key={j} className="text-sm leading-relaxed" style={{ color: "var(--bfh-body)" }}>
+                        {item}
+                      </li>
+                    );
+                  })}
+                </ul>
+              );
+              bulletBuffer = [];
+            };
+
+            blocks.forEach((block, i) => {
+              if (block.startsWith("• ")) {
+                bulletBuffer.push(block.slice(2));
+              } else {
+                flushBullets(`bullets-${i}`);
+                elements.push(
+                  <p key={i} className="text-sm leading-relaxed mb-2 last:mb-0 whitespace-pre-line" style={{ color: "var(--bfh-body)" }}>
+                    {block}
+                  </p>
+                );
+              }
+            });
+            flushBullets("bullets-end");
+
+            return elements;
+          })()}
         </div>
       )}
     </div>
