@@ -175,77 +175,141 @@ export default function RadarSection() {
     deeptechOnly;
 
   const filtered = useMemo(() => {
-    const raw = search.toLowerCase().trim();
+    // Normalize: lowercase, collapse hyphens/slashes to space, trim
+    const normalize = (s: string) =>
+      s.toLowerCase().replace(/[-\/]/g, " ").replace(/\s+/g, " ").trim();
 
-    // Expand query with synonyms so e.g. "KI" also matches "AI" content
+    const raw = normalize(search);
+
     const SYNONYMS: Record<string, string[]> = {
-      "ki": ["ai", "artificial intelligence", "maschinelles lernen"],
-      "ai": ["ki", "künstliche intelligenz", "machine learning"],
-      "künstliche intelligenz": ["ai", "ki"],
-      "förderung": ["funding", "finanzierung", "grant"],
-      "finanzierung": ["funding", "förderung"],
-      "grant": ["funding", "förderung"],
-      "netzwerk": ["network"],
-      "network": ["netzwerk"],
+      // AI / ML
+      "ki": ["ai", "artificial intelligence", "machine learning", "maschinelles lernen", "ml"],
+      "ai": ["ki", "künstliche intelligenz", "machine learning", "ml"],
+      "ml": ["machine learning", "ki", "ai"],
+      "künstliche intelligenz": ["ai", "ki", "machine learning"],
+      "machine learning": ["ki", "ai", "ml"],
+      // Funding
+      "förderung": ["funding", "finanzierung", "grant", "stipendium", "zuschuss"],
+      "finanzierung": ["funding", "förderung", "grant"],
+      "grant": ["funding", "förderung", "finanzierung"],
+      "stipendium": ["grant", "förderung"],
+      "zuschuss": ["grant", "förderung"],
+      "funding": ["förderung", "finanzierung", "grant"],
+      "investment": ["investition", "venture capital", "vc"],
+      "investition": ["investment", "venture capital"],
+      "venture capital": ["vc", "investment", "investition"],
+      "vc": ["venture capital", "investment"],
+      // Networks / Coaching
+      "netzwerk": ["network", "community", "ecosystem"],
+      "network": ["netzwerk", "community"],
       "beschleuniger": ["accelerator"],
-      "quantencomputing": ["quantum"],
+      "accelerator": ["beschleuniger", "incubator"],
+      "incubator": ["accelerator", "inkubator"],
+      "inkubator": ["incubator", "accelerator"],
+      "coaching": ["beratung", "mentoring", "consulting"],
+      "mentoring": ["coaching", "beratung"],
+      "beratung": ["coaching", "mentoring", "consulting"],
+      "consulting": ["beratung", "coaching"],
+      // Stages
+      "frühphase": ["early stage", "pre seed", "seed"],
+      "early stage": ["frühphase", "pre seed"],
+      "seed": ["frühphase", "early stage"],
+      "growth": ["wachstum", "scale up", "later stage"],
+      "wachstum": ["growth", "scale up"],
+      "scale up": ["growth", "wachstum", "later stage"],
+      // Tech clusters
+      "quantencomputing": ["quantum", "quantentechnologie"],
       "quantum": ["quantencomputing", "quantentechnologie"],
-      "medizintechnik": ["medtech"],
-      "medtech": ["medizintechnik"],
-      "biotechnologie": ["biotech"],
+      "quantentechnologie": ["quantum", "quantencomputing"],
+      "medizintechnik": ["medtech", "medical", "healthcare"],
+      "medtech": ["medizintechnik", "medical", "healthcare"],
+      "biotechnologie": ["biotech", "biologie"],
       "biotech": ["biotechnologie"],
       "raumfahrt": ["space", "aerospace", "spacetech"],
-      "aerospace": ["raumfahrt", "spacetech"],
-      "spacetech": ["raumfahrt", "aerospace"],
-      "cybersicherheit": ["cybersecurity"],
-      "cybersecurity": ["cybersicherheit", "sicherheit"],
-      "gesundheit": ["health", "e-health", "ehealth", "medtech"],
-      "health": ["gesundheit", "e-health"],
-      "ehealth": ["e-health", "gesundheit"],
-      "landwirtschaft": ["agrotech", "agrar"],
-      "agrar": ["agrotech", "landwirtschaft"],
-      "agrotech": ["landwirtschaft", "agrar"],
-      "robotik": ["robotics"],
-      "robotics": ["robotik"],
-      "halbleiter": ["semiconductors"],
-      "semiconductors": ["halbleiter"],
-      "nanotechnologie": ["nanotech", "nanotech"],
+      "aerospace": ["raumfahrt", "spacetech", "space"],
+      "spacetech": ["raumfahrt", "aerospace", "space"],
+      "space": ["raumfahrt", "aerospace", "spacetech"],
+      "cybersicherheit": ["cybersecurity", "sicherheit", "security"],
+      "cybersecurity": ["cybersicherheit", "sicherheit", "security"],
+      "sicherheit": ["cybersecurity", "cybersicherheit", "security"],
+      "security": ["sicherheit", "cybersecurity"],
+      "gesundheit": ["health", "ehealth", "medtech", "healthcare"],
+      "health": ["gesundheit", "ehealth", "healthcare"],
+      "healthcare": ["gesundheit", "health", "medtech"],
+      "ehealth": ["e health", "gesundheit", "health"],
+      "e health": ["ehealth", "gesundheit"],
+      "landwirtschaft": ["agrotech", "agrar", "agriculture"],
+      "agrar": ["agrotech", "landwirtschaft", "agriculture"],
+      "agrotech": ["landwirtschaft", "agrar", "agriculture"],
+      "agriculture": ["landwirtschaft", "agrar", "agrotech"],
+      "robotik": ["robotics", "automation", "automatisierung"],
+      "robotics": ["robotik", "automation"],
+      "automation": ["automatisierung", "robotics", "robotik"],
+      "automatisierung": ["automation", "robotics"],
+      "halbleiter": ["semiconductors", "chips"],
+      "semiconductors": ["halbleiter", "chips"],
+      "nanotechnologie": ["nanotech", "nano"],
       "nanotech": ["nanotechnologie", "nano"],
-      "krypto": ["blockchain", "crypto"],
-      "crypto": ["blockchain", "krypto"],
-      "nachhaltigkeit": ["cleantech", "sustainable", "sustainability"],
-      "cleantech": ["nachhaltigkeit", "sustainability", "sustainable"],
-      "energie": ["energy"],
-      "energy": ["energie"],
-      "lebensmittel": ["foodtech"],
-      "ernährung": ["foodtech"],
+      "krypto": ["blockchain", "crypto", "web3", "dezentral"],
+      "crypto": ["blockchain", "krypto", "web3"],
+      "blockchain": ["krypto", "crypto", "web3"],
+      "web3": ["blockchain", "crypto", "dezentral"],
+      "nachhaltigkeit": ["cleantech", "sustainable", "sustainability", "green", "grün"],
+      "cleantech": ["nachhaltigkeit", "sustainability", "sustainable", "green"],
+      "sustainable": ["nachhaltigkeit", "cleantech", "sustainability"],
+      "sustainability": ["nachhaltigkeit", "cleantech", "sustainable"],
+      "green": ["cleantech", "nachhaltigkeit"],
+      "energie": ["energy", "erneuerbar"],
+      "energy": ["energie", "erneuerbar"],
+      "erneuerbar": ["energie", "energy", "renewable"],
+      "renewable": ["erneuerbar", "cleantech"],
+      "lebensmittel": ["foodtech", "food", "ernährung"],
+      "ernährung": ["foodtech", "food", "lebensmittel"],
       "foodtech": ["lebensmittel", "ernährung", "food"],
-      "bau": ["construction", "building"],
-      "gebäude": ["construction", "building"],
-      "construction": ["bau", "gebäude"],
-      "datenwissenschaft": ["data science"],
-      "data science": ["datenwissenschaft"],
-      "coaching": ["beratung", "mentoring"],
-      "mentoring": ["coaching", "beratung"],
-      "beratung": ["coaching", "mentoring"],
-      "photonics": ["photonik"],
-      "photonik": ["photonics"],
+      "food": ["lebensmittel", "foodtech"],
+      "bau": ["construction", "building", "gebäude"],
+      "gebäude": ["construction", "building", "bau"],
+      "construction": ["bau", "gebäude", "building"],
+      "building": ["bau", "gebäude", "construction"],
+      "datenwissenschaft": ["data science", "data analytics", "analytics"],
+      "data science": ["datenwissenschaft", "analytics"],
+      "analytics": ["data science", "datenwissenschaft"],
+      "photonics": ["photonik", "optik", "optics"],
+      "photonik": ["photonics", "optik"],
+      "optik": ["photonics", "photonik", "optics"],
+      "optics": ["photonics", "photonik", "optik"],
+      // Commercialisation
+      "ip": ["intellectual property", "patent", "patente"],
+      "patent": ["ip", "intellectual property", "patente"],
+      "patente": ["patent", "ip"],
+      "intellectual property": ["ip", "patent"],
+      "fundraising": ["funding", "kapital", "investment"],
+      "kapital": ["funding", "investment", "fundraising"],
+      "markt": ["market", "kommerzialisierung", "commercialisation"],
+      "market": ["markt", "commercialisation", "kommerzialisierung"],
+      "kommerzialisierung": ["commercialisation", "markt", "market"],
+      "commercialisation": ["kommerzialisierung", "markt", "market"],
+      "internationalisierung": ["international", "export", "global"],
+      "international": ["internationalisierung", "global", "export"],
+      "global": ["international", "internationalisierung"],
     };
 
-    // Expand raw query: collect all terms to search for
     const expandQuery = (q: string): string[] => {
       const terms = [q];
       const syns = SYNONYMS[q] ?? [];
-      return [...new Set([...terms, ...syns])];
+      // Also try with last 2-3 chars stripped (simple stemming for -ung, -en, -ing etc.)
+      const stemmed = q.length >= 7 ? q.slice(0, -3) : q.length >= 5 ? q.slice(0, -2) : null;
+      return [...new Set([...terms, ...syns, ...(stemmed ? [stemmed] : [])])];
     };
 
-    // Split query into words; each word must match somewhere (AND logic)
+    // Normalize haystack the same way (hyphens -> spaces)
     const words = raw ? raw.split(/\s+/).filter(Boolean) : [];
 
     const haystack = (p: (typeof programs)[0]) =>
-      [p.name, p.organization, p.purpose, p.offerings, p.targetGroup, p.cluster, p.commercialisationSkills]
-        .join(" ")
-        .toLowerCase();
+      normalize(
+        [p.name, p.organization, p.purpose, p.offerings, p.targetGroup, p.cluster, p.commercialisationSkills, p.remarks]
+          .join(" ")
+      );
 
     return programs.filter((p) => {
       const hay = haystack(p);
@@ -484,7 +548,7 @@ const OFFERINGS_DE: Record<string, string> = {
   "Accelerator & Incubation Programs": "Intensive Begleitprogramme für Startups in der Früh- und Wachstumsphase – mit Mentoring, Infrastruktur und Community.",
   "Co-Founder Matchmaking & Talent Access": "Unterstützung bei der Suche nach Mitgründer:innen oder qualifizierten Fachkräften.",
   "Coaching": "Individuelle Begleitung durch erfahrene Expert:innen zu Strategie, Geschäftsmodell und Umsetzung.",
-  "Funding": "Finanzielle Förderung – z.B. Zuschüsse, Darlehen oder Beteiligungskapital – zur Unterstützung von Entwicklung und Wachstum.",
+  "Funding": "Finanzielle Förderung – z.B. Zuschlüsse, Darlehen oder Beteiligungskapital – zur Unterstützung von Entwicklung und Wachstum.",
   "Infrastructure & Labs": "Zugang zu Büroräumen, Co-Working-Spaces, Labors oder technischer Forschungsinfrastruktur.",
   "Investor Access": "Vermittlung zu Business Angels, VCs oder öffentlichen Investoren sowie Unterstützung bei der Investorensuche.",
   "Market & Industry Access": "Unterstützung beim Markteintritt, bei der Kundengewinnung oder beim Aufbau von Industriekooperationen.",
