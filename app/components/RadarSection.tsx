@@ -320,10 +320,18 @@ export default function RadarSection() {
           expandQuery(word).some((term) => hay.includes(term))
         );
 
-      const programPhases = p.phase.split(",").map((s) => s.trim());
+      const normPhase = (s: string) =>
+        s.toLowerCase().replace(/[–—]/g, "-").replace(/\s+/g, " ").trim();
+      const programPhases = p.phase
+        .split(/[,;|]/)
+        .map((s) => normPhase(s))
+        .filter(Boolean);
       const matchesPhase =
         activePhases.length === 0 ||
-        activePhases.some((ph) => programPhases.includes(ph));
+        activePhases.some((ph) => {
+          const n = normPhase(ph);
+          return programPhases.some((pp) => pp === n || pp.includes(n) || n.includes(pp));
+        });
 
       const programClusters = p.cluster.split(" | ").map((s) => s.trim());
       const matchesCluster =
