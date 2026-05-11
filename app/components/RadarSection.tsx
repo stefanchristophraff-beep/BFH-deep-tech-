@@ -175,17 +175,86 @@ export default function RadarSection() {
     deeptechOnly;
 
   const filtered = useMemo(() => {
-    const q = search.toLowerCase();
+    const raw = search.toLowerCase().trim();
+
+    // Expand query with synonyms so e.g. "KI" also matches "AI" content
+    const SYNONYMS: Record<string, string[]> = {
+      "ki": ["ai", "artificial intelligence", "maschinelles lernen"],
+      "ai": ["ki", "künstliche intelligenz", "machine learning"],
+      "künstliche intelligenz": ["ai", "ki"],
+      "förderung": ["funding", "finanzierung", "grant"],
+      "finanzierung": ["funding", "förderung"],
+      "grant": ["funding", "förderung"],
+      "netzwerk": ["network"],
+      "network": ["netzwerk"],
+      "beschleuniger": ["accelerator"],
+      "quantencomputing": ["quantum"],
+      "quantum": ["quantencomputing", "quantentechnologie"],
+      "medizintechnik": ["medtech"],
+      "medtech": ["medizintechnik"],
+      "biotechnologie": ["biotech"],
+      "biotech": ["biotechnologie"],
+      "raumfahrt": ["space", "aerospace", "spacetech"],
+      "aerospace": ["raumfahrt", "spacetech"],
+      "spacetech": ["raumfahrt", "aerospace"],
+      "cybersicherheit": ["cybersecurity"],
+      "cybersecurity": ["cybersicherheit", "sicherheit"],
+      "gesundheit": ["health", "e-health", "ehealth", "medtech"],
+      "health": ["gesundheit", "e-health"],
+      "ehealth": ["e-health", "gesundheit"],
+      "landwirtschaft": ["agrotech", "agrar"],
+      "agrar": ["agrotech", "landwirtschaft"],
+      "agrotech": ["landwirtschaft", "agrar"],
+      "robotik": ["robotics"],
+      "robotics": ["robotik"],
+      "halbleiter": ["semiconductors"],
+      "semiconductors": ["halbleiter"],
+      "nanotechnologie": ["nanotech", "nanotech"],
+      "nanotech": ["nanotechnologie", "nano"],
+      "krypto": ["blockchain", "crypto"],
+      "crypto": ["blockchain", "krypto"],
+      "nachhaltigkeit": ["cleantech", "sustainable", "sustainability"],
+      "cleantech": ["nachhaltigkeit", "sustainability", "sustainable"],
+      "energie": ["energy"],
+      "energy": ["energie"],
+      "lebensmittel": ["foodtech"],
+      "ernährung": ["foodtech"],
+      "foodtech": ["lebensmittel", "ernährung", "food"],
+      "bau": ["construction", "building"],
+      "gebäude": ["construction", "building"],
+      "construction": ["bau", "gebäude"],
+      "datenwissenschaft": ["data science"],
+      "data science": ["datenwissenschaft"],
+      "coaching": ["beratung", "mentoring"],
+      "mentoring": ["coaching", "beratung"],
+      "beratung": ["coaching", "mentoring"],
+      "photonics": ["photonik"],
+      "photonik": ["photonics"],
+    };
+
+    // Expand raw query: collect all terms to search for
+    const expandQuery = (q: string): string[] => {
+      const terms = [q];
+      const syns = SYNONYMS[q] ?? [];
+      return [...new Set([...terms, ...syns])];
+    };
+
+    // Split query into words; each word must match somewhere (AND logic)
+    const words = raw ? raw.split(/\s+/).filter(Boolean) : [];
+
+    const haystack = (p: (typeof programs)[0]) =>
+      [p.name, p.organization, p.purpose, p.offerings, p.targetGroup, p.cluster, p.commercialisationSkills]
+        .join(" ")
+        .toLowerCase();
+
     return programs.filter((p) => {
+      const hay = haystack(p);
+
       const matchesSearch =
-        !q ||
-        p.name.toLowerCase().includes(q) ||
-        p.organization.toLowerCase().includes(q) ||
-        p.purpose.toLowerCase().includes(q) ||
-        p.offerings.toLowerCase().includes(q) ||
-        p.targetGroup.toLowerCase().includes(q) ||
-        p.cluster.toLowerCase().includes(q) ||
-        p.commercialisationSkills.toLowerCase().includes(q);
+        !raw ||
+        words.every((word) =>
+          expandQuery(word).some((term) => hay.includes(term))
+        );
 
       const programPhases = p.phase.split(",").map((s) => s.trim());
       const matchesPhase =
