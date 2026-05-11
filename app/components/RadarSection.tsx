@@ -5,9 +5,9 @@ import { useLanguage } from "@/app/context/LanguageContext";
 import type { AirtableProgram } from "@/app/api/programs/route";
 
 const PHASES = [
-  { label: "Early Stage (1-3)", value: "Early Stage (1-3)" },
-  { label: "Mid Stage (4-6)", value: "Mid Stage (4-6)" },
-  { label: "Later Stage (7-9)", value: "Later Stage (7-9)" },
+  { label: "Early Stage (1-3)", value: "TRL&MRL 1-3" },
+  { label: "Mid Stage (4-6)", value: "TRL&MRL 4-6" },
+  { label: "Later Stage (7-9)", value: "TRL&MRL 7-9" },
 ];
 
 function MultiSelectDropdown({
@@ -96,7 +96,6 @@ export default function RadarSection() {
   const [error, setError] = useState(false);
   const [filtersOpen, setFiltersOpen] = useState(true);
 
-  // Filter state
   const [search, setSearch] = useState("");
   const [activePhases, setActivePhases] = useState<string[]>([]);
   const [selectedClusters, setSelectedClusters] = useState<string[]>([]);
@@ -175,20 +174,17 @@ export default function RadarSection() {
     deeptechOnly;
 
   const filtered = useMemo(() => {
-    // Normalize: lowercase, collapse hyphens/slashes to space, trim
     const normalize = (s: string) =>
       s.toLowerCase().replace(/[-\/]/g, " ").replace(/\s+/g, " ").trim();
 
     const raw = normalize(search);
 
     const SYNONYMS: Record<string, string[]> = {
-      // AI / ML
       "ki": ["ai", "artificial intelligence", "machine learning", "maschinelles lernen", "ml"],
       "ai": ["ki", "künstliche intelligenz", "machine learning", "ml"],
       "ml": ["machine learning", "ki", "ai"],
       "künstliche intelligenz": ["ai", "ki", "machine learning"],
       "machine learning": ["ki", "ai", "ml"],
-      // Funding
       "förderung": ["funding", "finanzierung", "grant", "stipendium", "zuschuss"],
       "finanzierung": ["funding", "förderung", "grant"],
       "grant": ["funding", "förderung", "finanzierung"],
@@ -199,7 +195,6 @@ export default function RadarSection() {
       "investition": ["investment", "venture capital"],
       "venture capital": ["vc", "investment", "investition"],
       "vc": ["venture capital", "investment"],
-      // Networks / Coaching
       "netzwerk": ["network", "community", "ecosystem"],
       "network": ["netzwerk", "community"],
       "beschleuniger": ["accelerator"],
@@ -210,14 +205,12 @@ export default function RadarSection() {
       "mentoring": ["coaching", "beratung"],
       "beratung": ["coaching", "mentoring", "consulting"],
       "consulting": ["beratung", "coaching"],
-      // Stages
       "frühphase": ["early stage", "pre seed", "seed"],
       "early stage": ["frühphase", "pre seed"],
       "seed": ["frühphase", "early stage"],
       "growth": ["wachstum", "scale up", "later stage"],
       "wachstum": ["growth", "scale up"],
       "scale up": ["growth", "wachstum", "later stage"],
-      // Tech clusters
       "quantencomputing": ["quantum", "quantentechnologie"],
       "quantum": ["quantencomputing", "quantentechnologie"],
       "quantentechnologie": ["quantum", "quantencomputing"],
@@ -278,7 +271,6 @@ export default function RadarSection() {
       "photonik": ["photonics", "optik"],
       "optik": ["photonics", "photonik", "optics"],
       "optics": ["photonics", "photonik", "optik"],
-      // Commercialisation
       "ip": ["intellectual property", "patent", "patente"],
       "patent": ["ip", "intellectual property", "patente"],
       "patente": ["patent", "ip"],
@@ -297,12 +289,10 @@ export default function RadarSection() {
     const expandQuery = (q: string): string[] => {
       const terms = [q];
       const syns = SYNONYMS[q] ?? [];
-      // Also try with last 2-3 chars stripped (simple stemming for -ung, -en, -ing etc.)
       const stemmed = q.length >= 7 ? q.slice(0, -3) : q.length >= 5 ? q.slice(0, -2) : null;
       return [...new Set([...terms, ...syns, ...(stemmed ? [stemmed] : [])])];
     };
 
-    // Normalize haystack the same way (hyphens -> spaces)
     const words = raw ? raw.split(/\s+/).filter(Boolean) : [];
 
     const haystack = (p: (typeof programs)[0]) =>
@@ -372,7 +362,6 @@ export default function RadarSection() {
   return (
     <section id="radar" className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
         <div className="mb-10">
           <h2 className="text-3xl sm:text-4xl font-700 mb-2" style={{ color: "var(--bfh-dark)" }}>
             {t("radar.title")}
@@ -382,7 +371,6 @@ export default function RadarSection() {
           </p>
         </div>
 
-        {/* Search + Filters toggle */}
         <div className="flex gap-3 mb-3">
           <div className="relative flex-1">
             <svg className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" style={{ color: "var(--bfh-muted)" }}>
@@ -429,11 +417,9 @@ export default function RadarSection() {
           </button>
         </div>
 
-        {/* Filter panel */}
         {!loading && !error && filtersOpen && (
           <div className="p-5 mb-6" style={{ backgroundColor: "var(--bfh-surface)", borderLeft: "4px solid var(--bfh-yellow)", border: "1px solid var(--bfh-border)", borderLeftWidth: "4px", borderLeftColor: "var(--bfh-yellow)" }}>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-5">
-              {/* Phase */}
               <div>
                 <p className="text-xs font-700 mb-2 uppercase tracking-wide" style={{ color: "var(--bfh-muted)" }}>Phase (TRL/MRL)</p>
                 <div className="flex flex-wrap gap-2">
@@ -455,7 +441,6 @@ export default function RadarSection() {
                 </div>
               </div>
 
-              {/* Skills */}
               <div>
                 <p className="text-xs font-700 mb-2 uppercase tracking-wide" style={{ color: "var(--bfh-muted)" }}>
                   {lang === "de" ? "Kommerzialisierungskompetenzen" : "Commercialisation Skills"}
@@ -463,13 +448,11 @@ export default function RadarSection() {
                 <MultiSelectDropdown options={skillOptions} selected={selectedSkills} onChange={(v) => { setSelectedSkills(v); resetScroll(); }} placeholder={lang === "de" ? "Kompetenzen auswählen..." : "Select skills..."} />
               </div>
 
-              {/* Cluster */}
               <div>
                 <p className="text-xs font-700 mb-2 uppercase tracking-wide" style={{ color: "var(--bfh-muted)" }}>Technology Cluster</p>
                 <MultiSelectDropdown options={clusterOptions} selected={selectedClusters} onChange={(v) => { setSelectedClusters(v); resetScroll(); }} placeholder={lang === "de" ? "Cluster auswählen..." : "Select clusters..."} />
               </div>
 
-              {/* Offerings */}
               <div>
                 <p className="text-xs font-700 mb-2 uppercase tracking-wide" style={{ color: "var(--bfh-muted)" }}>
                   {lang === "de" ? "Angebote" : "Offerings"}
@@ -478,7 +461,6 @@ export default function RadarSection() {
               </div>
             </div>
 
-            {/* Checkboxes */}
             <div className="flex flex-wrap gap-6 mt-5 pt-4" style={{ borderTop: "1px solid var(--bfh-border)" }}>
               <label className="flex items-center gap-2 cursor-pointer text-sm font-600" style={{ color: "var(--bfh-body)" }}>
                 <input type="checkbox" checked={deeptechOnly} onChange={(e) => { setDeeptechOnly(e.target.checked); resetScroll(); }} />
@@ -500,10 +482,8 @@ export default function RadarSection() {
           </div>
         )}
 
-        {/* Offerings legend */}
         {!loading && !error && <OfferingsLegend lang={lang} />}
 
-        {/* Loading */}
         {loading && (
           <div className="flex flex-col items-center justify-center py-24" style={{ color: "var(--bfh-muted)" }}>
             <svg className="w-8 h-8 animate-spin mb-3" fill="none" viewBox="0 0 24 24" style={{ color: "var(--bfh-blue)" }}>
@@ -620,7 +600,6 @@ function OfferingsLegend({ lang }: { lang: string }) {
   );
 }
 
-// Map program names to a specific logo domain when the hyperlink domain differs
 const LOGO_DOMAIN_OVERRIDES: Record<string, string> = {
   "Smart Up": "hslu.ch",
 };
@@ -681,7 +660,6 @@ function ProgramCard({
       }}
     >
       <div className="p-5 flex flex-col flex-1">
-        {/* Header */}
         <div className="flex items-start gap-3 mb-3">
           {program.hyperlink && (
             <OrgLogo hyperlink={program.hyperlink} name={program.organization || program.name} programName={program.name} />
@@ -701,7 +679,6 @@ function ProgramCard({
           </div>
         </div>
 
-        {/* Badges */}
         <div className="flex flex-wrap gap-1.5 mb-3">
           {program.phase && program.phase.split(",").map((ph) => (
             <span
@@ -728,7 +705,6 @@ function ProgramCard({
           )}
         </div>
 
-        {/* Expanded details */}
         {expanded && (
           <div className="space-y-3 mb-3">
             {program.offerings && (
@@ -758,7 +734,6 @@ function ProgramCard({
           </div>
         )}
 
-        {/* Footer */}
         <div className="flex items-center justify-between pt-3 mt-auto" style={{ borderTop: "1px solid var(--bfh-border)" }}>
           <button
             onClick={() => setExpanded(!expanded)}
